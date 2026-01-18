@@ -332,16 +332,16 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - list_display, list_filter, search_fields
 
 #### Tarefa 15: Forms de Account
-- [ ] 15.1 - Criar AccountForm
+- [X] 15.1 - Criar AccountForm
   - accounts/forms.py
   - ModelForm do Account
   - Campos: name, account_type, initial_balance
   - Widgets customizados
   - Labels e help_texts em português
-- [ ] 15.2 - Customizar widget de account_type
+- [X] 15.2 - Customizar widget de account_type
   - Select estilizado
   - Opções traduzidas
-- [ ] 15.3 - Validações customizadas
+- [X] 15.3 - Validações customizadas
   - Nome obrigatório
   - Initial balance pode ser negativo
   - Mensagens de erro em português
