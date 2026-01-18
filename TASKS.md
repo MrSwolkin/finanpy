@@ -412,7 +412,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 4 - Categorias (Semana 5)
 
 #### Tarefa 19: Modelo de Category
-- [ ] 19.1 - Criar Category model
+- [X] 19.1 - Criar Category model
   - categories/models.py
   - Campo user (ForeignKey)
   - Campo name (CharField)
@@ -421,16 +421,16 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo is_default (BooleanField)
   - Campos created_at e updated_at
   - Método __str__
-- [ ] 19.2 - Definir choices para category_type
+- [X] 19.2 - Definir choices para category_type
   - INCOME = 'income'
   - EXPENSE = 'expense'
   - Labels em português
-- [ ] 19.3 - Criar constraint de unicidade
+- [X] 19.3 - Criar constraint de unicidade
   - unique_together = ['user', 'name']
-- [ ] 19.4 - Criar e aplicar migrations
+- [X] 19.4 - Criar e aplicar migrations
   - makemigrations categories
   - migrate categories
-- [ ] 19.5 - Registrar no admin
+- [X] 19.5 - Registrar no admin
   - categories/admin.py
   - list_display com cor visual
   - list_filter por tipo
