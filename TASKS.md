@@ -347,52 +347,52 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Mensagens de erro em português
 
 #### Tarefa 16: Views de Account
-- [ ] 16.1 - Criar AccountListView
+- [X] 16.1 - Criar AccountListView
   - accounts/views.py
   - ListView
   - Filtrar por user = request.user
   - LoginRequiredMixin
   - Ordenar por nome
-- [ ] 16.2 - Criar AccountCreateView
+- [X] 16.2 - Criar AccountCreateView
   - CreateView
   - Associar user automaticamente
   - Set current_balance = initial_balance
   - Success message
   - Redirect para list
-- [ ] 16.3 - Criar AccountUpdateView
+- [X] 16.3 - Criar AccountUpdateView
   - UpdateView
   - Verificar propriedade (user)
   - Não permitir editar initial_balance
   - Success message
-- [ ] 16.4 - Criar AccountDeleteView
+- [X] 16.4 - Criar AccountDeleteView
   - DeleteView
   - Verificar propriedade
   - Confirmação
   - Success message
   - Redirect para list
-- [ ] 16.5 - Criar AccountDetailView (opcional)
+- [X] 16.5 - Criar AccountDetailView (opcional)
   - DetailView
   - Exibir detalhes completos
   - Listar transações da conta
 
 #### Tarefa 17: Templates de Account
-- [ ] 17.1 - Criar estrutura templates accounts
+- [X] 17.1 - Criar estrutura templates accounts
   - templates/accounts/
-- [ ] 17.2 - Criar account_list.html
+- [X] 17.2 - Criar account_list.html
   - Lista em cards ou tabela
   - Saldo total destacado
   - Botão "Nova Conta"
   - Ações: editar, excluir
   - Empty state
-- [ ] 17.3 - Criar account_form.html
+- [X] 17.3 - Criar account_form.html
   - Formulário de criação/edição
   - Reutilizável para create e update
   - Estilizado com TailwindCSS
-- [ ] 17.4 - Criar account_confirm_delete.html
+- [X] 17.4 - Criar account_confirm_delete.html
   - Modal ou página de confirmação
   - Avisos se houver transações
   - Botões confirmar/cancelar
-- [ ] 17.5 - Adicionar no menu
+- [X] 17.5 - Adicionar no menu
   - Link "Contas" na navbar
   - Destacar quando ativo
 
