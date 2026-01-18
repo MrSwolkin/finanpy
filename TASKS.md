@@ -397,14 +397,14 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Destacar quando ativo
 
 #### Tarefa 18: URLs de Account
-- [ ] 18.1 - Criar accounts/urls.py
+- [X] 18.1 - Criar accounts/urls.py
   - Padrão RESTful
   - accounts/ (list)
   - accounts/create/ (create)
   - accounts/<pk>/ (detail)
   - accounts/<pk>/edit/ (update)
   - accounts/<pk>/delete/ (delete)
-- [ ] 18.2 - Incluir em core/urls.py
+- [X] 18.2 - Incluir em core/urls.py
   - path('accounts/', include('accounts.urls'))
 
 ---
