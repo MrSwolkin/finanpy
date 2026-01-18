@@ -190,21 +190,21 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Incluir em core/urls.py
 
 #### Tarefa 9: Templates de Autenticação
-- [ ] 9.1 - Criar estrutura de templates users
+- [X] 9.1 - Criar estrutura de templates users
   - templates/users/
-- [ ] 9.2 - Criar template de cadastro
+- [X] 9.2 - Criar template de cadastro
   - templates/users/signup.html
   - Herdar de base.html
   - Formulário estilizado com TailwindCSS
   - Link para login
   - Validações visuais
-- [ ] 9.3 - Criar template de login
+- [X] 9.3 - Criar template de login
   - templates/users/login.html
   - Formulário com email e senha
   - Checkbox "Lembrar-me"
   - Link para cadastro
   - Link para recuperação de senha
-- [ ] 9.4 - Estilizar forms com TailwindCSS
+- [X] 9.4 - Estilizar forms com TailwindCSS
   - Inputs com bg-gray-700
   - Borders e focus states
   - Labels em text-gray-300

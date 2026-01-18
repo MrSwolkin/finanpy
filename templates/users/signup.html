@@ -1,0 +1,115 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Cadastro - Finanpy{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md">
+        <!-- Logo/Brand -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">
+                <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                    Finanpy
+                </span>
+            </h1>
+            <p class="text-gray-400 text-sm">
+                Gerencie suas finanças de forma simples e eficiente
+            </p>
+        </div>
+
+        <!-- Signup Card -->
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-8 shadow-lg">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">
+                Criar Conta
+            </h2>
+
+            <!-- Form Errors (Non-field errors) -->
+            {% if form.non_field_errors %}
+            <div class="mb-6 bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg">
+                <ul class="list-disc list-inside space-y-1">
+                    {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Signup Form -->
+            <form method="post" action="{% url 'users:signup' %}" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Email Field -->
+                <div>
+                    <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        {{ form.email.label }}
+                    </label>
+                    {{ form.email }}
+                    {% if form.email.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.email.help_text }}</p>
+                    {% endif %}
+                    {% if form.email.errors %}
+                    <div class="mt-2">
+                        {% for error in form.email.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Password1 Field -->
+                <div>
+                    <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        {{ form.password1.label }}
+                    </label>
+                    {{ form.password1 }}
+                    {% if form.password1.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.password1.help_text }}</p>
+                    {% endif %}
+                    {% if form.password1.errors %}
+                    <div class="mt-2">
+                        {% for error in form.password1.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Password2 Field -->
+                <div>
+                    <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        {{ form.password2.label }}
+                    </label>
+                    {{ form.password2 }}
+                    {% if form.password2.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.password2.help_text }}</p>
+                    {% endif %}
+                    {% if form.password2.errors %}
+                    <div class="mt-2">
+                        {% for error in form.password2.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-2">
+                    <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+                        Criar Conta
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Login Link -->
+        <div class="mt-6 text-center">
+            <p class="text-gray-400 text-sm">
+                Já tem uma conta?
+                <a href="{% url 'users:login' %}" class="text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-200">
+                    Entrar
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
