@@ -174,3 +174,13 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+
+# Django-Tailwind
+theme/static_src/node_modules/
+theme/static/
+
+# Static files (collected)
+staticfiles/
+
+# Media files (user uploads)
+media/

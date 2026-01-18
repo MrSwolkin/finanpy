@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/**
+  * A catch-all path to Django template files, JavaScript, and Python files
+  * that contain Tailwind CSS classes and will be scanned by Tailwind to generate the final CSS file.
+  *
+  * If your final CSS file is not being updated after code changes, you may want to broaden or narrow
+  * the scope of this path.
+  */
+@source "../../../**/*.{html,py,js}";
+
+/**
+  * Finanpy Custom Theme
+  * Dark mode theme with purple/blue gradients
+  */
+@theme {
+  /* Primary Colors */
+  --color-primary-50: #f5f3ff;
+  --color-primary-100: #ede9fe;
+  --color-primary-200: #ddd6fe;
+  --color-primary-300: #c4b5fd;
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6d28d9;
+  --color-primary-800: #5b21b6;
+  --color-primary-900: #4c1d95;
+  --color-primary-950: #2e1065;
+
+  /* Income - Green */
+  --color-income: #10b981;
+  --color-income-light: #34d399;
+  --color-income-dark: #059669;
+
+  /* Expense - Red */
+  --color-expense: #ef4444;
+  --color-expense-light: #f87171;
+  --color-expense-dark: #dc2626;
+
+  /* Success */
+  --color-success: #22c55e;
+  --color-success-light: #4ade80;
+  --color-success-dark: #16a34a;
+
+  /* Warning */
+  --color-warning: #f59e0b;
+  --color-warning-light: #fbbf24;
+  --color-warning-dark: #d97706;
+
+  /* Error */
+  --color-error: #ef4444;
+  --color-error-light: #f87171;
+  --color-error-dark: #dc2626;
+
+  /* Info */
+  --color-info: #3b82f6;
+  --color-info-light: #60a5fa;
+  --color-info-dark: #2563eb;
+}
+
+/* Base styles for dark theme */
+@layer base {
+  body {
+    @apply bg-gray-900 text-gray-100;
+  }
+}

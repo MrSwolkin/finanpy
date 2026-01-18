@@ -42,49 +42,49 @@
   - Adicionar em INSTALLED_APPS
 
 #### Tarefa 3: Configurar TailwindCSS com django-tailwind
-- [ ] 3.1 - Instalar django-tailwind
+- [X] 3.1 - Instalar django-tailwind
   - `pip install django-tailwind`
   - `pip install 'django-tailwind[reload]'` (para hot reload)
-- [ ] 3.2 - Adicionar ao INSTALLED_APPS
+- [X] 3.2 - Adicionar ao INSTALLED_APPS
   - 'tailwind' em settings.py
   - Antes dos apps do projeto
-- [ ] 3.3 - Criar app theme
+- [X] 3.3 - Criar app theme
   - `python manage.py tailwind init`
   - Nome sugerido: 'theme'
   - Adicionar 'theme' ao INSTALLED_APPS
-- [ ] 3.4 - Configurar TAILWIND_APP_NAME
+- [X] 3.4 - Configurar TAILWIND_APP_NAME
   - settings.py: TAILWIND_APP_NAME = 'theme'
-- [ ] 3.5 - Configurar INTERNAL_IPS (para reload)
+- [X] 3.5 - Configurar INTERNAL_IPS (para reload)
   - settings.py: INTERNAL_IPS = ['127.0.0.1']
-- [ ] 3.6 - Instalar dependências do Tailwind
+- [X] 3.6 - Instalar dependências do Tailwind
   - `python manage.py tailwind install`
   - Instala Node.js automaticamente via django-tailwind
-- [ ] 3.7 - Customizar theme/static_src/tailwind.config.js
+- [X] 3.7 - Customizar theme/static_src/tailwind.config.js
   - Configurar tema customizado (cores escuras)
   - Adicionar gradientes personalizados
   - Configurar content paths (já vem pré-configurado)
-- [ ] 3.8 - Testar build
+- [X] 3.8 - Testar build
   - `python manage.py tailwind build`
   - Verificar CSS gerado
-- [ ] 3.9 - Criar estrutura de diretórios static adicional
+- [X] 3.9 - Criar estrutura de diretórios static adicional
   - static/js/
   - static/images/
 
 #### Tarefa 4: Configurar Templates Base
-- [ ] 4.1 - Criar diretório templates
+- [X] 4.1 - Criar diretório templates
   - templates/
   - templates/base/
   - templates/partials/
-- [ ] 4.2 - Criar base.html
+- [X] 4.2 - Criar base.html
   - Estrutura HTML5
   - {% load static tailwind_tags %} no topo
   - {% tailwind_css %} no head para incluir CSS
   - Definir blocks: title, content, extra_css, extra_js
   - Adicionar meta tags responsivas
-- [ ] 4.3 - Configurar TEMPLATES em settings.py
+- [X] 4.3 - Configurar TEMPLATES em settings.py
   - Definir DIRS com caminho de templates
   - Configurar context_processors
-- [ ] 4.4 - Criar template para mensagens
+- [X] 4.4 - Criar template para mensagens
   - templates/partials/messages.html
   - Usar Django messages framework
   - Estilizar com TailwindCSS (success, error, warning, info)
@@ -92,7 +92,7 @@
 #### Tarefa 5: Git e Controle de Versão
 - [X] 5.1 - Inicializar repositório Git
   - `git init`
-- [ ] 5.2 - Revise e se necessário adicine ao .gitignore
+- [X] 5.2 - Revise e se necessário adicine ao .gitignore
   - Adicionar venv/
   - Adicionar __pycache__/
   - Adicionar *.pyc
@@ -100,12 +100,12 @@
   - Adicionar .env
   - Adicionar theme/static_src/node_modules/ (gerado por django-tailwind)
   - Adicionar theme/static/ (CSS compilado)
-- [ ] 5.3 - Criar README.md
+- [X] 5.3 - Criar README.md
   - Descrição do projeto
   - Instruções de setup
   - Comandos principais
   - Comando para rodar Tailwind: `python manage.py tailwind start`
-- [ ] 5.4 - Primeiro commit
+- [X] 5.4 - Primeiro commit
   - `git add .`
   - `git commit -m "Initial project setup"`
 
