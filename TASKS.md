@@ -212,26 +212,26 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Mensagens de erro em red
 
 #### Tarefa 10: Recuperação de Senha
-- [ ] 10.1 - Configurar backend de email
+- [X] 10.1 - Configurar backend de email
   - settings.py
   - EMAIL_BACKEND para console (dev)
   - Preparar para SMTP (prod futuro)
-- [ ] 10.2 - Criar views de recuperação
+- [X] 10.2 - Criar views de recuperação
   - Usar PasswordResetView
   - PasswordResetDoneView
   - PasswordResetConfirmView
   - PasswordResetCompleteView
-- [ ] 10.3 - Criar templates de recuperação
+- [X] 10.3 - Criar templates de recuperação
   - password_reset_form.html
   - password_reset_done.html
   - password_reset_confirm.html
   - password_reset_complete.html
-- [ ] 10.4 - Configurar URLs de recuperação
+- [X] 10.4 - Configurar URLs de recuperação
   - password-reset/
   - password-reset/done/
   - password-reset-confirm/<uidb64>/<token>/
   - password-reset-complete/
-- [ ] 10.5 - Estilizar templates com TailwindCSS
+- [X] 10.5 - Estilizar templates com TailwindCSS
   - Manter consistência visual
   - Cards e formulários
   - Mensagens informativas
@@ -241,44 +241,44 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 2 - Perfil de Usuário (Semana 3)
 
 #### Tarefa 11: Views de Perfil
-- [ ] 11.1 - Criar ProfileDetailView
+- [X] 11.1 - Criar ProfileDetailView
   - profiles/views.py
   - Class-based view (DetailView)
   - Obter perfil do usuário logado
   - LoginRequiredMixin
-- [ ] 11.2 - Criar ProfileUpdateView
+- [X] 11.2 - Criar ProfileUpdateView
   - profiles/views.py
   - Class-based view (UpdateView)
   - Form com first_name, last_name, phone, avatar
   - Validações
   - Success message
-- [ ] 11.3 - Criar ProfileForm
+- [X] 11.3 - Criar ProfileForm
   - profiles/forms.py
   - ModelForm do Profile
   - Campos editáveis
   - Widgets customizados
   - Labels em português
-- [ ] 11.4 - Configurar URLs de perfil
+- [X] 11.4 - Configurar URLs de perfil
   - profiles/urls.py criar arquivo
   - profile/ (detail)
   - profile/edit/ (update)
   - Incluir em core/urls.py
 
 #### Tarefa 12: Templates de Perfil
-- [ ] 12.1 - Criar estrutura templates profiles
+- [X] 12.1 - Criar estrutura templates profiles
   - templates/profiles/
-- [ ] 12.2 - Criar template de visualização
+- [X] 12.2 - Criar template de visualização
   - templates/profiles/profile_detail.html
   - Exibir avatar (ou placeholder)
   - Exibir todas informações
   - Botão "Editar Perfil"
   - Cards estilizados
-- [ ] 12.3 - Criar template de edição
+- [X] 12.3 - Criar template de edição
   - templates/profiles/profile_form.html
   - Formulário completo
   - Preview de avatar
   - Botões Salvar e Cancelar
-- [ ] 12.4 - Adicionar link no menu
+- [X] 12.4 - Adicionar link no menu
   - Navbar com link "Perfil"
   - Acessível de todas as páginas
 
