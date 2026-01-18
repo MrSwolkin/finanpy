@@ -162,29 +162,29 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Configurar list_display
 
 #### Tarefa 8: Views de Autenticação
-- [ ] 8.1 - Criar view de cadastro (SignUpView)
+- [X] 8.1 - Criar view de cadastro (SignUpView)
   - users/views.py
   - Class-based view (CreateView)
   - Form com email, password1, password2
   - Validações de senha
   - Login automático após cadastro
   - Redirect para dashboard
-- [ ] 8.2 - Criar UserCreationForm customizado
+- [X] 8.2 - Criar UserCreationForm customizado
   - users/forms.py
   - Basear em UserCreationForm do Django
   - Campos: email, password1, password2
   - Validações customizadas
   - Help texts em português
-- [ ] 8.3 - Criar view de login (LoginView)
+- [X] 8.3 - Criar view de login (LoginView)
   - users/views.py
   - Usar LoginView do Django
   - Customizar template
   - Configurar success_url
-- [ ] 8.4 - Criar view de logout (LogoutView)
+- [X] 8.4 - Criar view de logout (LogoutView)
   - users/views.py
   - Usar LogoutView do Django
   - Redirect para home
-- [ ] 8.5 - Configurar URLs de autenticação
+- [X] 8.5 - Configurar URLs de autenticação
   - users/urls.py criar arquivo
   - Adicionar rotas: signup/, login/, logout/
   - Incluir em core/urls.py
