@@ -138,7 +138,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Configurar list_display, search_fields
 
 #### Tarefa 7: Modelo de Profile
-- [ ] 7.1 - Criar Profile model em profiles/models.py
+- [X] 7.1 - Criar Profile model em profiles/models.py
   - Campo user (OneToOneField com User)
   - Campo first_name (CharField)
   - Campo last_name (CharField)
@@ -147,64 +147,64 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo created_at (DateTimeField)
   - Campo updated_at (DateTimeField)
   - Método __str__
-- [ ] 7.2 - Criar signal para criação automática de Profile
+- [X] 7.2 - Criar signal para criação automática de Profile
   - profiles/signals.py
   - Signal post_save do User
   - Criar Profile ao criar User
-- [ ] 7.3 - Configurar signal em apps.py
+- [X] 7.3 - Configurar signal em apps.py
   - profiles/apps.py
   - Importar signals no ready()
-- [ ] 7.4 - Criar e aplicar migrations
+- [X] 7.4 - Criar e aplicar migrations
   - `python manage.py makemigrations profiles`
   - `python manage.py migrate profiles`
-- [ ] 7.5 - Registrar Profile no admin
+- [X] 7.5 - Registrar Profile no admin
   - profiles/admin.py
   - Configurar list_display
 
 #### Tarefa 8: Views de Autenticação
-- [ ] 8.1 - Criar view de cadastro (SignUpView)
+- [X] 8.1 - Criar view de cadastro (SignUpView)
   - users/views.py
   - Class-based view (CreateView)
   - Form com email, password1, password2
   - Validações de senha
   - Login automático após cadastro
   - Redirect para dashboard
-- [ ] 8.2 - Criar UserCreationForm customizado
+- [X] 8.2 - Criar UserCreationForm customizado
   - users/forms.py
   - Basear em UserCreationForm do Django
   - Campos: email, password1, password2
   - Validações customizadas
   - Help texts em português
-- [ ] 8.3 - Criar view de login (LoginView)
+- [X] 8.3 - Criar view de login (LoginView)
   - users/views.py
   - Usar LoginView do Django
   - Customizar template
   - Configurar success_url
-- [ ] 8.4 - Criar view de logout (LogoutView)
+- [X] 8.4 - Criar view de logout (LogoutView)
   - users/views.py
   - Usar LogoutView do Django
   - Redirect para home
-- [ ] 8.5 - Configurar URLs de autenticação
+- [X] 8.5 - Configurar URLs de autenticação
   - users/urls.py criar arquivo
   - Adicionar rotas: signup/, login/, logout/
   - Incluir em core/urls.py
 
 #### Tarefa 9: Templates de Autenticação
-- [ ] 9.1 - Criar estrutura de templates users
+- [X] 9.1 - Criar estrutura de templates users
   - templates/users/
-- [ ] 9.2 - Criar template de cadastro
+- [X] 9.2 - Criar template de cadastro
   - templates/users/signup.html
   - Herdar de base.html
   - Formulário estilizado com TailwindCSS
   - Link para login
   - Validações visuais
-- [ ] 9.3 - Criar template de login
+- [X] 9.3 - Criar template de login
   - templates/users/login.html
   - Formulário com email e senha
   - Checkbox "Lembrar-me"
   - Link para cadastro
   - Link para recuperação de senha
-- [ ] 9.4 - Estilizar forms com TailwindCSS
+- [X] 9.4 - Estilizar forms com TailwindCSS
   - Inputs com bg-gray-700
   - Borders e focus states
   - Labels em text-gray-300
