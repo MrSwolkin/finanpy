@@ -138,7 +138,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Configurar list_display, search_fields
 
 #### Tarefa 7: Modelo de Profile
-- [ ] 7.1 - Criar Profile model em profiles/models.py
+- [X] 7.1 - Criar Profile model em profiles/models.py
   - Campo user (OneToOneField com User)
   - Campo first_name (CharField)
   - Campo last_name (CharField)
@@ -147,17 +147,17 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo created_at (DateTimeField)
   - Campo updated_at (DateTimeField)
   - Método __str__
-- [ ] 7.2 - Criar signal para criação automática de Profile
+- [X] 7.2 - Criar signal para criação automática de Profile
   - profiles/signals.py
   - Signal post_save do User
   - Criar Profile ao criar User
-- [ ] 7.3 - Configurar signal em apps.py
+- [X] 7.3 - Configurar signal em apps.py
   - profiles/apps.py
   - Importar signals no ready()
-- [ ] 7.4 - Criar e aplicar migrations
+- [X] 7.4 - Criar e aplicar migrations
   - `python manage.py makemigrations profiles`
   - `python manage.py migrate profiles`
-- [ ] 7.5 - Registrar Profile no admin
+- [X] 7.5 - Registrar Profile no admin
   - profiles/admin.py
   - Configurar list_display
 
