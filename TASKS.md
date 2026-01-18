@@ -117,22 +117,22 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 1 - Autenticação e Usuários (Semana 2)
 
 #### Tarefa 6: Modelo de Usuário Customizado
-- [ ] 6.1 - Criar CustomUser model em users/models.py
+- [X] 6.1 - Criar CustomUser model em users/models.py
   - Herdar de AbstractUser
   - Definir USERNAME_FIELD = 'email'
   - Definir REQUIRED_FIELDS = []
   - Adicionar campo email único
   - Remover campo username
-- [ ] 6.2 - Criar CustomUserManager
+- [X] 6.2 - Criar CustomUserManager
   - Implementar create_user()
   - Implementar create_superuser()
   - Validar email obrigatório
-- [ ] 6.3 - Configurar AUTH_USER_MODEL em settings.py
+- [X] 6.3 - Configurar AUTH_USER_MODEL em settings.py
   - AUTH_USER_MODEL = 'users.CustomUser'
-- [ ] 6.4 - Criar e aplicar migrations
+- [X] 6.4 - Criar e aplicar migrations
   - `python manage.py makemigrations`
   - `python manage.py migrate`
-- [ ] 6.5 - Registrar model no admin
+- [X] 6.5 - Registrar model no admin
   - users/admin.py
   - Usar UserAdmin customizado
   - Configurar list_display, search_fields
