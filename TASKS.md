@@ -265,20 +265,20 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Incluir em core/urls.py
 
 #### Tarefa 12: Templates de Perfil
-- [ ] 12.1 - Criar estrutura templates profiles
+- [X] 12.1 - Criar estrutura templates profiles
   - templates/profiles/
-- [ ] 12.2 - Criar template de visualização
+- [X] 12.2 - Criar template de visualização
   - templates/profiles/profile_detail.html
   - Exibir avatar (ou placeholder)
   - Exibir todas informações
   - Botão "Editar Perfil"
   - Cards estilizados
-- [ ] 12.3 - Criar template de edição
+- [X] 12.3 - Criar template de edição
   - templates/profiles/profile_form.html
   - Formulário completo
   - Preview de avatar
   - Botões Salvar e Cancelar
-- [ ] 12.4 - Adicionar link no menu
+- [X] 12.4 - Adicionar link no menu
   - Navbar com link "Perfil"
   - Acessível de todas as páginas
 
