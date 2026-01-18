@@ -283,20 +283,20 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Acessível de todas as páginas
 
 #### Tarefa 13: Upload de Avatar
-- [ ] 13.1 - Configurar MEDIA settings
+- [X] 13.1 - Configurar MEDIA settings
   - settings.py
   - MEDIA_URL = '/media/'
   - MEDIA_ROOT = BASE_DIR / 'media'
-- [ ] 13.2 - Configurar URLs para servir media (dev)
+- [X] 13.2 - Configurar URLs para servir media (dev)
   - core/urls.py
   - Adicionar static() para MEDIA_URL
-- [ ] 13.3 - Criar diretório media/avatars
+- [X] 13.3 - Criar diretório media/avatars
   - Estrutura de pastas
-- [ ] 13.4 - Implementar validação de imagem
+- [X] 13.4 - Implementar validação de imagem
   - Tamanho máximo (2MB)
   - Formatos permitidos (jpg, png)
   - Mensagens de erro
-- [ ] 13.5 - Criar placeholder para avatar padrão
+- [X] 13.5 - Criar placeholder para avatar padrão
   - Imagem ou ícone SVG
   - Exibir quando sem avatar
 
@@ -305,7 +305,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 3 - Contas Bancárias (Semana 4)
 
 #### Tarefa 14: Modelo de Account
-- [ ] 14.1 - Criar Account model
+- [X] 14.1 - Criar Account model
   - accounts/models.py
   - Campo user (ForeignKey)
   - Campo name (CharField)
@@ -315,33 +315,33 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo is_active (BooleanField)
   - Campos created_at e updated_at
   - Método __str__
-- [ ] 14.2 - Definir choices para account_type
+- [X] 14.2 - Definir choices para account_type
   - CHECKING = 'checking'
   - SAVINGS = 'savings'
   - INVESTMENT = 'investment'
   - OTHER = 'other'
   - Labels em português
-- [ ] 14.3 - Adicionar Meta class
+- [X] 14.3 - Adicionar Meta class
   - ordering = ['name']
   - verbose_name em português
-- [ ] 14.4 - Criar e aplicar migrations
+- [X] 14.4 - Criar e aplicar migrations
   - makemigrations accounts
   - migrate accounts
-- [ ] 14.5 - Registrar no admin
+- [X] 14.5 - Registrar no admin
   - accounts/admin.py
   - list_display, list_filter, search_fields
 
 #### Tarefa 15: Forms de Account
-- [ ] 15.1 - Criar AccountForm
+- [X] 15.1 - Criar AccountForm
   - accounts/forms.py
   - ModelForm do Account
   - Campos: name, account_type, initial_balance
   - Widgets customizados
   - Labels e help_texts em português
-- [ ] 15.2 - Customizar widget de account_type
+- [X] 15.2 - Customizar widget de account_type
   - Select estilizado
   - Opções traduzidas
-- [ ] 15.3 - Validações customizadas
+- [X] 15.3 - Validações customizadas
   - Nome obrigatório
   - Initial balance pode ser negativo
   - Mensagens de erro em português
