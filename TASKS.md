@@ -305,7 +305,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 3 - Contas Bancárias (Semana 4)
 
 #### Tarefa 14: Modelo de Account
-- [ ] 14.1 - Criar Account model
+- [X] 14.1 - Criar Account model
   - accounts/models.py
   - Campo user (ForeignKey)
   - Campo name (CharField)
@@ -315,19 +315,19 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo is_active (BooleanField)
   - Campos created_at e updated_at
   - Método __str__
-- [ ] 14.2 - Definir choices para account_type
+- [X] 14.2 - Definir choices para account_type
   - CHECKING = 'checking'
   - SAVINGS = 'savings'
   - INVESTMENT = 'investment'
   - OTHER = 'other'
   - Labels em português
-- [ ] 14.3 - Adicionar Meta class
+- [X] 14.3 - Adicionar Meta class
   - ordering = ['name']
   - verbose_name em português
-- [ ] 14.4 - Criar e aplicar migrations
+- [X] 14.4 - Criar e aplicar migrations
   - makemigrations accounts
   - migrate accounts
-- [ ] 14.5 - Registrar no admin
+- [X] 14.5 - Registrar no admin
   - accounts/admin.py
   - list_display, list_filter, search_fields
 
