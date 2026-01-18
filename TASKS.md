@@ -7,7 +7,7 @@
   - Instalar Python 3.10+
   - Criar venv: `python -m venv venv`
   - Ativar venv
-- [] 1.2 - Instalar Django e dependências
+- [X] 1.2 - Instalar Django e dependências
   - Django 5+
   - django-tailwind e django-tailwind[reload]
   - Pillow (para avatares)
@@ -16,7 +16,7 @@
   - `django-admin startproject core .`
   - Verificar estrutura criada
   - Testar servidor: `python manage.py runserver`
-- [] 1.4 - Configurar settings.py inicial
+- [X] 1.4 - Configurar settings.py inicial
   - Definir SECRET_KEY
   - Configurar ALLOWED_HOSTS
   - Definir TIME_ZONE = 'America/Sao_Paulo'
@@ -90,9 +90,9 @@
   - Estilizar com TailwindCSS (success, error, warning, info)
 
 #### Tarefa 5: Git e Controle de Versão
-- [ ] 5.1 - Inicializar repositório Git
+- [X] 5.1 - Inicializar repositório Git
   - `git init`
-- [ ] 5.2 - Criar .gitignore
+- [ ] 5.2 - Revise e se necessário adicine ao .gitignore
   - Adicionar venv/
   - Adicionar __pycache__/
   - Adicionar *.pyc
