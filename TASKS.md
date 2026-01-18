@@ -283,20 +283,20 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Acessível de todas as páginas
 
 #### Tarefa 13: Upload de Avatar
-- [ ] 13.1 - Configurar MEDIA settings
+- [X] 13.1 - Configurar MEDIA settings
   - settings.py
   - MEDIA_URL = '/media/'
   - MEDIA_ROOT = BASE_DIR / 'media'
-- [ ] 13.2 - Configurar URLs para servir media (dev)
+- [X] 13.2 - Configurar URLs para servir media (dev)
   - core/urls.py
   - Adicionar static() para MEDIA_URL
-- [ ] 13.3 - Criar diretório media/avatars
+- [X] 13.3 - Criar diretório media/avatars
   - Estrutura de pastas
-- [ ] 13.4 - Implementar validação de imagem
+- [X] 13.4 - Implementar validação de imagem
   - Tamanho máximo (2MB)
   - Formatos permitidos (jpg, png)
   - Mensagens de erro
-- [ ] 13.5 - Criar placeholder para avatar padrão
+- [X] 13.5 - Criar placeholder para avatar padrão
   - Imagem ou ícone SVG
   - Exibir quando sem avatar
 
