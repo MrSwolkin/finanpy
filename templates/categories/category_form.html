@@ -1,0 +1,227 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar Categoria{% else %}Nova Categoria{% endif %} - Finanpy{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="container mx-auto max-w-3xl">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+                <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                    {% if form.instance.pk %}
+                    Editar Categoria
+                    {% else %}
+                    Nova Categoria
+                    {% endif %}
+                </span>
+            </h1>
+            <p class="text-gray-400 text-sm md:text-base">
+                {% if form.instance.pk %}
+                Atualize as informações da sua categoria de transação
+                {% else %}
+                Adicione uma nova categoria para organizar suas transações
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Warning for Default Categories -->
+        {% if form.instance.pk and form.instance.is_default %}
+        <div class="mb-6 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <div>
+                    <h4 class="text-sm font-semibold text-yellow-400 mb-1">Categoria Padrão</h4>
+                    <p class="text-xs text-yellow-300">
+                        Esta é uma categoria padrão do sistema e não pode ser editada. Crie uma nova categoria personalizada se desejar fazer alterações.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Form Card -->
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6 md:p-8">
+            <!-- Form Errors (Non-field errors) -->
+            {% if form.non_field_errors %}
+            <div class="mb-6 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                <ul class="list-disc list-inside space-y-1">
+                    {% for error in form.non_field_errors %}
+                    <li class="text-red-400 text-sm">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Category Form -->
+            <form method="post" action="" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Category Name Field -->
+                <div>
+                    <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        Nome da Categoria
+                        {% if form.name.field.required %}
+                        <span class="text-red-400">*</span>
+                        {% endif %}
+                    </label>
+                    {{ form.name }}
+                    {% if form.name.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.name.help_text }}</p>
+                    {% endif %}
+                    {% if form.name.errors %}
+                    <div class="mt-2">
+                        {% for error in form.name.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Category Type Field -->
+                <div>
+                    <label for="{{ form.category_type.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        Tipo
+                        {% if form.category_type.field.required %}
+                        <span class="text-red-400">*</span>
+                        {% endif %}
+                    </label>
+                    {{ form.category_type }}
+                    {% if form.category_type.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.category_type.help_text }}</p>
+                    {% endif %}
+                    {% if form.category_type.errors %}
+                    <div class="mt-2">
+                        {% for error in form.category_type.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Color Field with Preview -->
+                <div>
+                    <label for="{{ form.color.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        Cor
+                        {% if form.color.field.required %}
+                        <span class="text-red-400">*</span>
+                        {% endif %}
+                    </label>
+
+                    <!-- Color Input and Preview Container -->
+                    <div class="flex items-center gap-4">
+                        <!-- Color Picker -->
+                        <div class="flex-1">
+                            {{ form.color }}
+                        </div>
+
+                        <!-- Color Preview -->
+                        <div class="flex items-center gap-3">
+                            <div
+                                id="color-preview"
+                                class="w-16 h-12 rounded-lg border-2 border-gray-600 shadow-lg transition-all duration-200"
+                                style="background-color: {{ form.color.value|default:'#6b7280' }};"
+                            ></div>
+                            <div>
+                                <p class="text-xs text-gray-400">Prévia</p>
+                                <p id="color-hex" class="text-sm font-mono text-gray-300">{{ form.color.value|default:'#6b7280' }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if form.color.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.color.help_text }}</p>
+                    {% endif %}
+                    {% if form.color.errors %}
+                    <div class="mt-2">
+                        {% for error in form.color.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-700">
+                    <!-- Submit Button -->
+                    <button
+                        type="submit"
+                        class="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl {% if form.instance.pk and form.instance.is_default %}opacity-50 cursor-not-allowed{% endif %}"
+                        {% if form.instance.pk and form.instance.is_default %}disabled{% endif %}
+                    >
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            {% if form.instance.pk %}
+                            Salvar Alterações
+                            {% else %}
+                            Criar Categoria
+                            {% endif %}
+                        </span>
+                    </button>
+
+                    <!-- Cancel Button -->
+                    <a
+                        href="{% url 'categories:list' %}"
+                        class="flex-1 px-6 py-3 bg-gray-700 text-gray-100 rounded-lg font-semibold hover:bg-gray-600 transition-all duration-200 text-center"
+                    >
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            Cancelar
+                        </span>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Info Box (only for create) -->
+        {% if not form.instance.pk %}
+        <div class="mt-6 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-blue-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <h4 class="text-sm font-semibold text-blue-400 mb-1">Dica</h4>
+                    <p class="text-xs text-blue-300">
+                        Escolha cores que facilitem a identificação visual das suas categorias. Por exemplo, verde para receitas e vermelho para despesas.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Color picker live preview
+    document.addEventListener('DOMContentLoaded', function() {
+        const colorInput = document.getElementById('{{ form.color.id_for_label }}');
+        const colorPreview = document.getElementById('color-preview');
+        const colorHex = document.getElementById('color-hex');
+
+        if (colorInput && colorPreview && colorHex) {
+            // Update preview when color changes
+            colorInput.addEventListener('input', function(e) {
+                const color = e.target.value;
+                colorPreview.style.backgroundColor = color;
+                colorHex.textContent = color.toUpperCase();
+            });
+
+            // Update preview when color changes (for some browsers that only fire 'change')
+            colorInput.addEventListener('change', function(e) {
+                const color = e.target.value;
+                colorPreview.style.backgroundColor = color;
+                colorHex.textContent = color.toUpperCase();
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -347,64 +347,64 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Mensagens de erro em português
 
 #### Tarefa 16: Views de Account
-- [ ] 16.1 - Criar AccountListView
+- [X] 16.1 - Criar AccountListView
   - accounts/views.py
   - ListView
   - Filtrar por user = request.user
   - LoginRequiredMixin
   - Ordenar por nome
-- [ ] 16.2 - Criar AccountCreateView
+- [X] 16.2 - Criar AccountCreateView
   - CreateView
   - Associar user automaticamente
   - Set current_balance = initial_balance
   - Success message
   - Redirect para list
-- [ ] 16.3 - Criar AccountUpdateView
+- [X] 16.3 - Criar AccountUpdateView
   - UpdateView
   - Verificar propriedade (user)
   - Não permitir editar initial_balance
   - Success message
-- [ ] 16.4 - Criar AccountDeleteView
+- [X] 16.4 - Criar AccountDeleteView
   - DeleteView
   - Verificar propriedade
   - Confirmação
   - Success message
   - Redirect para list
-- [ ] 16.5 - Criar AccountDetailView (opcional)
+- [X] 16.5 - Criar AccountDetailView (opcional)
   - DetailView
   - Exibir detalhes completos
   - Listar transações da conta
 
 #### Tarefa 17: Templates de Account
-- [ ] 17.1 - Criar estrutura templates accounts
+- [X] 17.1 - Criar estrutura templates accounts
   - templates/accounts/
-- [ ] 17.2 - Criar account_list.html
+- [X] 17.2 - Criar account_list.html
   - Lista em cards ou tabela
   - Saldo total destacado
   - Botão "Nova Conta"
   - Ações: editar, excluir
   - Empty state
-- [ ] 17.3 - Criar account_form.html
+- [X] 17.3 - Criar account_form.html
   - Formulário de criação/edição
   - Reutilizável para create e update
   - Estilizado com TailwindCSS
-- [ ] 17.4 - Criar account_confirm_delete.html
+- [X] 17.4 - Criar account_confirm_delete.html
   - Modal ou página de confirmação
   - Avisos se houver transações
   - Botões confirmar/cancelar
-- [ ] 17.5 - Adicionar no menu
+- [X] 17.5 - Adicionar no menu
   - Link "Contas" na navbar
   - Destacar quando ativo
 
 #### Tarefa 18: URLs de Account
-- [ ] 18.1 - Criar accounts/urls.py
+- [X] 18.1 - Criar accounts/urls.py
   - Padrão RESTful
   - accounts/ (list)
   - accounts/create/ (create)
   - accounts/<pk>/ (detail)
   - accounts/<pk>/edit/ (update)
   - accounts/<pk>/delete/ (delete)
-- [ ] 18.2 - Incluir em core/urls.py
+- [X] 18.2 - Incluir em core/urls.py
   - path('accounts/', include('accounts.urls'))
 
 ---
@@ -412,7 +412,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 4 - Categorias (Semana 5)
 
 #### Tarefa 19: Modelo de Category
-- [ ] 19.1 - Criar Category model
+- [X] 19.1 - Criar Category model
   - categories/models.py
   - Campo user (ForeignKey)
   - Campo name (CharField)
@@ -421,35 +421,35 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo is_default (BooleanField)
   - Campos created_at e updated_at
   - Método __str__
-- [ ] 19.2 - Definir choices para category_type
+- [X] 19.2 - Definir choices para category_type
   - INCOME = 'income'
   - EXPENSE = 'expense'
   - Labels em português
-- [ ] 19.3 - Criar constraint de unicidade
+- [X] 19.3 - Criar constraint de unicidade
   - unique_together = ['user', 'name']
-- [ ] 19.4 - Criar e aplicar migrations
+- [X] 19.4 - Criar e aplicar migrations
   - makemigrations categories
   - migrate categories
-- [ ] 19.5 - Registrar no admin
+- [X] 19.5 - Registrar no admin
   - categories/admin.py
   - list_display com cor visual
   - list_filter por tipo
 
 #### Tarefa 20: Categorias Padrão
-- [ ] 20.1 - Criar management command
+- [X] 20.1 - Criar management command
   - categories/management/commands/
   - create_default_categories.py
-- [ ] 20.2 - Implementar lógica do comando
+- [X] 20.2 - Implementar lógica do comando
   - Listar categorias padrão
   - Definir cores para cada uma
   - Criar se não existir
   - Marcar is_default=True
-- [ ] 20.3 - Definir categorias de receita
+- [X] 20.3 - Definir categorias de receita
   - Salário (#10b981)
   - Freelance (#3b82f6)
   - Investimentos (#8b5cf6)
   - Outros (#6b7280)
-- [ ] 20.4 - Definir categorias de despesa
+- [X] 20.4 - Definir categorias de despesa
   - Alimentação (#ef4444)
   - Transporte (#f59e0b)
   - Moradia (#06b6d4)
@@ -457,75 +457,75 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Lazer (#14b8a6)
   - Educação (#6366f1)
   - Outros (#6b7280)
-- [ ] 20.5 - Integrar comando ao signal de criação de usuário
+- [X] 20.5 - Integrar comando ao signal de criação de usuário
   - Executar ao criar novo usuário
   - profiles/signals.py
 
 #### Tarefa 21: Forms de Category
-- [ ] 21.1 - Criar CategoryForm
+- [X] 21.1 - Criar CategoryForm
   - categories/forms.py
   - ModelForm do Category
   - Campos: name, category_type, color
   - Excluir is_default
-- [ ] 21.2 - Implementar color picker
+- [X] 21.2 - Implementar color picker
   - Input type="color"
   - Estilização customizada
   - Valor padrão
-- [ ] 21.3 - Validação de nome único
+- [X] 21.3 - Validação de nome único
   - Por usuário
   - Mensagem de erro clara
-- [ ] 21.4 - Prevenir edição de categorias padrão
+- [X] 21.4 - Prevenir edição de categorias padrão
   - Verificação no form
   - Ou desabilitar campos
 
 #### Tarefa 22: Views de Category
-- [ ] 22.1 - Criar CategoryListView
+- [X] 22.1 - Criar CategoryListView
   - categories/views.py
   - Separar receitas e despesas
   - Filtrar por user
   - LoginRequiredMixin
-- [ ] 22.2 - Criar CategoryCreateView
+- [X] 22.2 - Criar CategoryCreateView
   - Associar user automaticamente
   - is_default = False
   - Success message
-- [ ] 22.3 - Criar CategoryUpdateView
+- [X] 22.3 - Criar CategoryUpdateView
   - Verificar propriedade
   - Não permitir editar is_default=True
   - Success message
-- [ ] 22.4 - Criar CategoryDeleteView
+- [X] 22.4 - Criar CategoryDeleteView
   - Verificar se tem transações
   - Não permitir deletar is_default=True
   - Confirmação
   - Success message
-- [ ] 22.5 - Adicionar validação de transações vinculadas
+- [X] 22.5 - Adicionar validação de transações vinculadas
   - Query para verificar
   - Mensagem de erro se houver
 
 #### Tarefa 23: Templates de Category
-- [ ] 23.1 - Criar templates/categories/
-- [ ] 23.2 - Criar category_list.html
+- [X] 23.1 - Criar templates/categories/
+- [X] 23.2 - Criar category_list.html
   - Duas colunas: Receitas | Despesas
   - Cards com cor da categoria
   - Badge "Padrão" para is_default
   - Ações: editar, excluir (se permitido)
   - Botão "Nova Categoria"
-- [ ] 23.3 - Criar category_form.html
+- [X] 23.3 - Criar category_form.html
   - Formulário com color picker
   - Radio buttons para tipo
   - Preview da cor selecionada
-- [ ] 23.4 - Criar category_confirm_delete.html
+- [X] 23.4 - Criar category_confirm_delete.html
   - Avisos apropriados
   - Verificação de transações
-- [ ] 23.5 - Adicionar no menu
+- [X] 23.5 - Adicionar no menu
   - Link "Categorias"
 
 #### Tarefa 24: URLs de Category
-- [ ] 24.1 - Criar categories/urls.py
+- [X] 24.1 - Criar categories/urls.py
   - categories/ (list)
   - categories/create/
   - categories/<pk>/edit/
   - categories/<pk>/delete/
-- [ ] 24.2 - Incluir em core/urls.py
+- [X] 24.2 - Incluir em core/urls.py
 
 ---
 

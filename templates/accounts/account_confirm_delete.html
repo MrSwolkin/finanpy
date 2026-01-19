@@ -1,0 +1,126 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Excluir Conta - Finanpy{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="container mx-auto max-w-2xl">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+                <span class="bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
+                    Excluir Conta
+                </span>
+            </h1>
+            <p class="text-gray-400 text-sm md:text-base">
+                Confirme a exclusão da conta bancária
+            </p>
+        </div>
+
+        <!-- Warning Card -->
+        <div class="bg-red-500/10 border border-red-500/30 rounded-xl shadow-lg p-6 md:p-8 mb-6">
+            <div class="flex items-start mb-6">
+                <div class="flex-shrink-0">
+                    <svg class="w-12 h-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-lg font-semibold text-red-400 mb-2">
+                        Atenção! Esta ação não pode ser desfeita.
+                    </h3>
+                    <p class="text-sm text-red-300">
+                        Ao excluir esta conta, todas as transações associadas também serão removidas permanentemente.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Account Details -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6">
+                <h4 class="text-sm font-medium text-gray-400 mb-4">
+                    Detalhes da Conta a ser Excluída
+                </h4>
+
+                <div class="space-y-4">
+                    <!-- Account Name -->
+                    <div class="flex items-center justify-between py-3 border-b border-gray-700">
+                        <span class="text-sm text-gray-400">Nome da Conta</span>
+                        <span class="text-base font-semibold text-white">{{ account.name }}</span>
+                    </div>
+
+                    <!-- Account Type -->
+                    <div class="flex items-center justify-between py-3 border-b border-gray-700">
+                        <span class="text-sm text-gray-400">Tipo de Conta</span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/30">
+                            {{ account.get_account_type_display }}
+                        </span>
+                    </div>
+
+                    <!-- Current Balance -->
+                    <div class="flex items-center justify-between py-3">
+                        <span class="text-sm text-gray-400">Saldo Atual</span>
+                        <span class="text-lg font-bold {% if account.current_balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+                            R$ {{ account.current_balance|floatformat:2 }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Form -->
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6 md:p-8">
+            <form method="post" action="">
+                {% csrf_token %}
+
+                <p class="text-gray-300 mb-6 text-center">
+                    Tem certeza de que deseja excluir a conta <strong class="text-white">{{ account.name }}</strong>?
+                </p>
+
+                <!-- Form Actions -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <!-- Cancel Button -->
+                    <a
+                        href="{% url 'accounts:list' %}"
+                        class="flex-1 px-6 py-3 bg-gray-700 text-gray-100 rounded-lg font-semibold hover:bg-gray-600 transition-all duration-200 text-center"
+                    >
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            Cancelar
+                        </span>
+                    </a>
+
+                    <!-- Confirm Delete Button -->
+                    <button
+                        type="submit"
+                        class="flex-1 px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    >
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                            Sim, Excluir Conta
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Additional Warning -->
+        <div class="mt-6 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <div>
+                    <h4 class="text-sm font-semibold text-yellow-400 mb-1">Importante</h4>
+                    <p class="text-xs text-yellow-300">
+                        Certifique-se de que não há transações importantes vinculadas a esta conta antes de excluí-la. Uma vez confirmada, esta ação não poderá ser revertida.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

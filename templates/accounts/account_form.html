@@ -1,0 +1,183 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar Conta{% else %}Nova Conta{% endif %} - Finanpy{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="container mx-auto max-w-3xl">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+                <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                    {% if form.instance.pk %}
+                    Editar Conta
+                    {% else %}
+                    Nova Conta
+                    {% endif %}
+                </span>
+            </h1>
+            <p class="text-gray-400 text-sm md:text-base">
+                {% if form.instance.pk %}
+                Atualize as informações da sua conta bancária
+                {% else %}
+                Adicione uma nova conta bancária ao seu gerenciador
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6 md:p-8">
+            <!-- Form Errors (Non-field errors) -->
+            {% if form.non_field_errors %}
+            <div class="mb-6 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                <ul class="list-disc list-inside space-y-1">
+                    {% for error in form.non_field_errors %}
+                    <li class="text-red-400 text-sm">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Account Form -->
+            <form method="post" action="" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Account Name Field -->
+                <div>
+                    <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        Nome da Conta
+                        {% if form.name.field.required %}
+                        <span class="text-red-400">*</span>
+                        {% endif %}
+                    </label>
+                    {{ form.name }}
+                    {% if form.name.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.name.help_text }}</p>
+                    {% endif %}
+                    {% if form.name.errors %}
+                    <div class="mt-2">
+                        {% for error in form.name.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Account Type Field -->
+                <div>
+                    <label for="{{ form.account_type.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        Tipo de Conta
+                        {% if form.account_type.field.required %}
+                        <span class="text-red-400">*</span>
+                        {% endif %}
+                    </label>
+                    {{ form.account_type }}
+                    {% if form.account_type.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.account_type.help_text }}</p>
+                    {% endif %}
+                    {% if form.account_type.errors %}
+                    <div class="mt-2">
+                        {% for error in form.account_type.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Initial Balance Field (only for create) -->
+                {% if not form.instance.pk %}
+                <div>
+                    <label for="{{ form.initial_balance.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
+                        Saldo Inicial
+                        {% if form.initial_balance.field.required %}
+                        <span class="text-red-400">*</span>
+                        {% endif %}
+                    </label>
+                    {{ form.initial_balance }}
+                    {% if form.initial_balance.help_text %}
+                    <p class="mt-2 text-xs text-gray-400">{{ form.initial_balance.help_text }}</p>
+                    {% endif %}
+                    {% if form.initial_balance.errors %}
+                    <div class="mt-2">
+                        {% for error in form.initial_balance.errors %}
+                        <p class="text-sm text-red-400">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Current Balance Info (only for edit) -->
+                {% if form.instance.pk %}
+                <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-blue-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h4 class="text-sm font-semibold text-blue-400 mb-1">Saldo Atual</h4>
+                            <p class="text-xs text-blue-300 mb-2">
+                                O saldo atual é atualizado automaticamente através das transações. Para editar a conta, você só pode alterar o nome e o tipo.
+                            </p>
+                            <p class="text-lg font-bold {% if form.instance.current_balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+                                R$ {{ form.instance.current_balance|floatformat:2 }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Form Actions -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-700">
+                    <!-- Submit Button -->
+                    <button
+                        type="submit"
+                        class="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    >
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            {% if form.instance.pk %}
+                            Salvar Alterações
+                            {% else %}
+                            Criar Conta
+                            {% endif %}
+                        </span>
+                    </button>
+
+                    <!-- Cancel Button -->
+                    <a
+                        href="{% url 'accounts:list' %}"
+                        class="flex-1 px-6 py-3 bg-gray-700 text-gray-100 rounded-lg font-semibold hover:bg-gray-600 transition-all duration-200 text-center"
+                    >
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            Cancelar
+                        </span>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Info Box (only for create) -->
+        {% if not form.instance.pk %}
+        <div class="mt-6 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-blue-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <h4 class="text-sm font-semibold text-blue-400 mb-1">Dica</h4>
+                    <p class="text-xs text-blue-300">
+                        Você pode usar valores negativos no saldo inicial caso sua conta comece com saldo devedor ou cheque especial utilizado.
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
