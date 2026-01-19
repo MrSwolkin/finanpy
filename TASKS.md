@@ -502,30 +502,30 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Mensagem de erro se houver
 
 #### Tarefa 23: Templates de Category
-- [ ] 23.1 - Criar templates/categories/
-- [ ] 23.2 - Criar category_list.html
+- [X] 23.1 - Criar templates/categories/
+- [X] 23.2 - Criar category_list.html
   - Duas colunas: Receitas | Despesas
   - Cards com cor da categoria
   - Badge "Padrão" para is_default
   - Ações: editar, excluir (se permitido)
   - Botão "Nova Categoria"
-- [ ] 23.3 - Criar category_form.html
+- [X] 23.3 - Criar category_form.html
   - Formulário com color picker
   - Radio buttons para tipo
   - Preview da cor selecionada
-- [ ] 23.4 - Criar category_confirm_delete.html
+- [X] 23.4 - Criar category_confirm_delete.html
   - Avisos apropriados
   - Verificação de transações
-- [ ] 23.5 - Adicionar no menu
+- [X] 23.5 - Adicionar no menu
   - Link "Categorias"
 
 #### Tarefa 24: URLs de Category
-- [ ] 24.1 - Criar categories/urls.py
+- [X] 24.1 - Criar categories/urls.py
   - categories/ (list)
   - categories/create/
   - categories/<pk>/edit/
   - categories/<pk>/delete/
-- [ ] 24.2 - Incluir em core/urls.py
+- [X] 24.2 - Incluir em core/urls.py
 
 ---
 
