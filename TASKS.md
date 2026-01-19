@@ -532,7 +532,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 5 - Transações (Semana 6-7)
 
 #### Tarefa 25: Modelo de Transaction
-- [ ] 25.1 - Criar Transaction model
+- [X] 25.1 - Criar Transaction model
   - transactions/models.py
   - Campo user (ForeignKey)
   - Campo account (ForeignKey)
@@ -543,33 +543,33 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Campo transaction_type (CharField com choices)
   - Campos created_at e updated_at
   - Método __str__
-- [ ] 25.2 - Definir choices para transaction_type
+- [X] 25.2 - Definir choices para transaction_type
   - INCOME = 'income'
   - EXPENSE = 'expense'
-- [ ] 25.3 - Adicionar Meta class
+- [X] 25.3 - Adicionar Meta class
   - ordering = ['-transaction_date', '-created_at']
   - indexes para queries comuns
-- [ ] 25.4 - Criar e aplicar migrations
+- [X] 25.4 - Criar e aplicar migrations
   - makemigrations transactions
   - migrate transactions
-- [ ] 25.5 - Registrar no admin
+- [X] 25.5 - Registrar no admin
   - list_display, list_filter, date_hierarchy
 
 #### Tarefa 26: Signals para Atualização de Saldo
-- [ ] 26.1 - Criar transactions/signals.py
-- [ ] 26.2 - Signal post_save para Transaction
+- [X] 26.1 - Criar transactions/signals.py
+- [X] 26.2 - Signal post_save para Transaction
   - Calcular impacto no saldo
   - Se income: account.current_balance += amount
   - Se expense: account.current_balance -= amount
   - Salvar account
-- [ ] 26.3 - Signal pre_save para edição
+- [X] 26.3 - Signal pre_save para edição
   - Calcular diferença
   - Estornar valor antigo
   - Aplicar valor novo
-- [ ] 26.4 - Signal post_delete para Transaction
+- [X] 26.4 - Signal post_delete para Transaction
   - Estornar valor da transação
   - Atualizar saldo da conta
-- [ ] 26.5 - Configurar signal em apps.py
+- [X] 26.5 - Configurar signal em apps.py
   - transactions/apps.py
   - Importar signals
 
