@@ -436,20 +436,20 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - list_filter por tipo
 
 #### Tarefa 20: Categorias Padrão
-- [ ] 20.1 - Criar management command
+- [X] 20.1 - Criar management command
   - categories/management/commands/
   - create_default_categories.py
-- [ ] 20.2 - Implementar lógica do comando
+- [X] 20.2 - Implementar lógica do comando
   - Listar categorias padrão
   - Definir cores para cada uma
   - Criar se não existir
   - Marcar is_default=True
-- [ ] 20.3 - Definir categorias de receita
+- [X] 20.3 - Definir categorias de receita
   - Salário (#10b981)
   - Freelance (#3b82f6)
   - Investimentos (#8b5cf6)
   - Outros (#6b7280)
-- [ ] 20.4 - Definir categorias de despesa
+- [X] 20.4 - Definir categorias de despesa
   - Alimentação (#ef4444)
   - Transporte (#f59e0b)
   - Moradia (#06b6d4)
@@ -457,7 +457,7 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Lazer (#14b8a6)
   - Educação (#6366f1)
   - Outros (#6b7280)
-- [ ] 20.5 - Integrar comando ao signal de criação de usuário
+- [X] 20.5 - Integrar comando ao signal de criação de usuário
   - Executar ao criar novo usuário
   - profiles/signals.py
 
