@@ -574,47 +574,47 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Importar signals
 
 #### Tarefa 27: Forms de Transaction
-- [ ] 27.1 - Criar TransactionForm
+- [X] 27.1 - Criar TransactionForm
   - transactions/forms.py
   - ModelForm do Transaction
   - Campos: description, amount, transaction_date, transaction_type, category, account
-- [ ] 27.2 - Filtrar categorias por tipo
+- [X] 27.2 - Filtrar categorias por tipo
   - JavaScript ou lógica no form
   - Ao selecionar tipo, filtrar categorias
-- [ ] 27.3 - Filtrar contas do usuário
+- [X] 27.3 - Filtrar contas do usuário
   - Apenas contas ativas
   - Do usuário logado
-- [ ] 27.4 - Widgets customizados
+- [X] 27.4 - Widgets customizados
   - Date picker
   - Input de valor formatado
   - Select estilizado
-- [ ] 27.5 - Validações
+- [X] 27.5 - Validações
   - Valor positivo
   - Data não futura (opcional)
   - Campos obrigatórios
 
 #### Tarefa 28: Views de Transaction
-- [ ] 28.1 - Criar TransactionListView
+- [X] 28.1 - Criar TransactionListView
   - transactions/views.py
   - ListView com paginação (20 items)
   - Filtrar por user
   - LoginRequiredMixin
   - Ordenar por data desc
-- [ ] 28.2 - Criar TransactionCreateView
+- [X] 28.2 - Criar TransactionCreateView
   - CreateView
   - Associar user automaticamente
   - Data padrão = hoje
   - Success message
   - Redirect para list
-- [ ] 28.3 - Criar TransactionUpdateView
+- [X] 28.3 - Criar TransactionUpdateView
   - UpdateView
   - Verificar propriedade
   - Success message
-- [ ] 28.4 - Criar TransactionDeleteView
+- [X] 28.4 - Criar TransactionDeleteView
   - DeleteView
   - Confirmação
   - Success message
-- [ ] 28.5 - Criar TransactionDetailView (opcional)
+- [X] 28.5 - Criar TransactionDetailView (opcional)
   - DetailView
   - Exibir todos os detalhes
 
@@ -764,45 +764,45 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 7 - Landing Page Pública (Semana 9)
 
 #### Tarefa 36: View da Landing Page
-- [ ] 36.1 - Criar LandingPageView
+- [X] 36.1 - Criar LandingPageView
   - core/views.py ou app 'website'
   - TemplateView
   - Acessível sem login
-- [ ] 36.2 - Verificar se usuário está autenticado
+- [X] 36.2 - Verificar se usuário está autenticado
   - Se sim, redirect para dashboard
   - Se não, mostrar landing page
 
 #### Tarefa 37: Template da Landing Page
-- [ ] 37.1 - Criar templates/landing/
-- [ ] 37.2 - Criar landing.html
+- [X] 37.1 - Criar templates/landing/
+- [X] 37.2 - Criar landing.html
   - Hero section com gradiente
   - Título e subtítulo atrativos
   - CTAs: "Cadastre-se Grátis" e "Entrar"
-- [ ] 37.3 - Seção de benefícios
+- [X] 37.3 - Seção de benefícios
   - 3-4 cards com features principais
   - Ícones ou emojis
   - Textos persuasivos
-- [ ] 37.4 - Seção de como funciona
+- [X] 37.4 - Seção de como funciona
   - Passos numerados
   - Descrições curtas
-- [ ] 37.5 - Footer
+- [X] 37.5 - Footer
   - Nome do projeto
   - Ano
   - Links úteis (futuro)
-- [ ] 37.6 - Design moderno
+- [X] 37.6 - Design moderno
   - Gradientes
   - Animações suaves (hover, scroll)
   - Totalmente responsivo
-- [ ] 37.7 - Otimizar textos
+- [X] 37.7 - Otimizar textos
   - Português claro
   - Foco em benefícios
   - Call to action forte
 
 #### Tarefa 38: URLs da Landing Page
-- [ ] 38.1 - Configurar URL raiz
+- [X] 38.1 - Configurar URL raiz
   - path('', LandingPageView.as_view())
   - core/urls.py
-- [ ] 38.2 - Testar redirecionamento
+- [X] 38.2 - Testar redirecionamento
   - Usuário logado → dashboard
   - Usuário não logado → landing
 
