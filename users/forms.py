@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 
 from .models import CustomUser
 
@@ -44,20 +45,15 @@ class CustomUserCreationForm(UserCreationForm):
 
     def clean_email(self):
         """
-        Validate that the email is unique in the database.
+        Normalize the email to lowercase.
 
         Returns:
             str: The cleaned and normalized email
-
-        Raises:
-            ValidationError: If the email already exists
         """
         email = self.cleaned_data.get('email')
-        if email and CustomUser.objects.filter(email=email).exists():
-            raise ValidationError(
-                'Este e-mail já está cadastrado. Por favor, use outro endereço de e-mail.'
-            )
-        return email.lower()
+        if email:
+            return email.lower()
+        return email
 
     def clean_password2(self):
         """
@@ -80,15 +76,24 @@ class CustomUserCreationForm(UserCreationForm):
     def save(self, commit=True):
         """
         Save the user instance with the provided email and password.
+        Handles race condition by catching IntegrityError on duplicate email.
 
         Args:
             commit: Whether to save the instance to the database
 
         Returns:
             CustomUser: The created user instance
+
+        Raises:
+            ValidationError: If email is duplicated during save (race condition)
         """
         user = super().save(commit=False)
         user.email = self.cleaned_data['email'].lower()
         if commit:
-            user.save()
+            try:
+                user.save()
+            except IntegrityError:
+                raise ValidationError(
+                    'Este e-mail já está cadastrado. Por favor, use outro e-mail ou faça login.'
+                )
         return user

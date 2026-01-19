@@ -1,7 +1,7 @@
 """
 Signals for the profiles app.
 
-Automatically creates a Profile instance and default categories when a new User is created.
+Automatically creates a Profile instance when a new User is created.
 """
 
 from django.conf import settings
@@ -9,7 +9,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from .models import Profile
-from categories.utils import create_default_categories_for_user
+
+# TODO: Implement default categories creation after categories.utils module is ready
+# from categories.utils import create_default_categories_for_user
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -31,19 +33,20 @@ def create_user_profile(sender, instance, created, **kwargs):
         )
 
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_default_categories(sender, instance, created, **kwargs):
-    """
-    Create default categories automatically when a new User is created.
-
-    Args:
-        sender: The model class (User)
-        instance: The actual User instance being saved
-        created: Boolean indicating if this is a new User
-        **kwargs: Additional keyword arguments
-    """
-    if created:
-        create_default_categories_for_user(instance)
+# TODO: Uncomment this signal when categories.utils.create_default_categories_for_user is implemented
+# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+# def create_user_default_categories(sender, instance, created, **kwargs):
+#     """
+#     Create default categories automatically when a new User is created.
+#
+#     Args:
+#         sender: The model class (User)
+#         instance: The actual User instance being saved
+#         created: Boolean indicating if this is a new User
+#         **kwargs: Additional keyword arguments
+#     """
+#     if created:
+#         create_default_categories_for_user(instance)
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

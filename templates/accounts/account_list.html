@@ -41,20 +41,7 @@
                         Saldo Total
                     </p>
                     <h2 class="text-3xl md:text-4xl font-bold text-white">
-                        {% widthratio accounts|length 1 1 as total_accounts %}
-                        {% with total=0 %}
-                            {% for account in accounts %}
-                                {% if forloop.first %}
-                                    {% widthratio account.current_balance 1 1 as total %}
-                                {% else %}
-                                    {% widthratio total 1 1 as old_total %}
-                                    {% widthratio account.current_balance 1 1 as current %}
-                                    {% widthratio old_total 1 1 as temp1 %}
-                                    {% widthratio current 1 1 as temp2 %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endwith %}
-                        R$ {{ accounts|first.current_balance|add:0|floatformat:2 }}
+                        R$ {{ total_balance|floatformat:2 }}
                     </h2>
                 </div>
                 <div class="flex items-center">
