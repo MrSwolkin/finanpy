@@ -1,9 +1,17 @@
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (
+    LoginView,
+    LogoutView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
+)
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import CreateView
 
 from .forms import CustomUserCreationForm
@@ -61,12 +69,13 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         """
         Get the URL to redirect to after successful login.
+        Validates the 'next' URL to prevent open redirect attacks.
 
         Returns:
-            str: The URL to redirect to (either 'next' parameter or dashboard)
+            str: The URL to redirect to (either validated 'next' parameter or dashboard)
         """
         next_url = self.request.GET.get('next')
-        if next_url:
+        if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={self.request.get_host()}):
             return next_url
         return reverse_lazy('dashboard')
 
@@ -135,3 +144,68 @@ class CustomLogoutView(LogoutView):
             )
 
         return super().dispatch(request, *args, **kwargs)
+
+
+class CustomPasswordResetView(PasswordResetView):
+    """
+    View for requesting a password reset email.
+    """
+
+    template_name = 'users/password_reset_form.html'
+    email_template_name = 'users/password_reset_email.html'
+    subject_template_name = 'users/password_reset_subject.txt'
+    success_url = reverse_lazy('users:password_reset_done')
+
+    def form_valid(self, form):
+        """
+        Handle valid form submission. Shows generic message to prevent email enumeration.
+
+        Args:
+            form: The validated form
+
+        Returns:
+            HttpResponse: Redirect to success page
+        """
+        messages.info(
+            self.request,
+            'Se o e-mail informado estiver cadastrado, você receberá instruções para redefinir sua senha.'
+        )
+        return super().form_valid(form)
+
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    """
+    View displayed after password reset email has been sent.
+    """
+
+    template_name = 'users/password_reset_done.html'
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    """
+    View for entering a new password after clicking the reset link.
+    """
+
+    template_name = 'users/password_reset_confirm.html'
+    success_url = reverse_lazy('users:password_reset_complete')
+
+    def form_valid(self, form):
+        """
+        Handle valid form submission by setting the new password.
+
+        Args:
+            form: The validated form
+
+        Returns:
+            HttpResponse: Redirect to completion page
+        """
+        messages.success(self.request, 'Sua senha foi alterada com sucesso!')
+        return super().form_valid(form)
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    """
+    View displayed after password has been successfully reset.
+    """
+
+    template_name = 'users/password_reset_complete.html'

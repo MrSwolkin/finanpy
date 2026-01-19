@@ -34,6 +34,7 @@ class ProfileForm(forms.ModelForm):
         """
         Validates the uploaded avatar image.
         Checks file size (max 2MB) and format (JPEG, PNG only).
+        Uses PIL to verify actual file type instead of relying on client-provided content_type.
         """
         avatar = self.cleaned_data.get('avatar')
 
@@ -48,11 +49,25 @@ class ProfileForm(forms.ModelForm):
                 'O arquivo é muito grande. O tamanho máximo permitido é 2MB.'
             )
 
-        # Validate file format (JPEG, PNG only)
-        allowed_types = ['image/jpeg', 'image/png']
-        if avatar.content_type not in allowed_types:
+        # Validate real file type with PIL (don't trust client-provided content_type)
+        try:
+            from PIL import Image
+            img = Image.open(avatar)
+            img.verify()
+
+            # Reopen after verify
+            avatar.seek(0)
+            img = Image.open(avatar)
+
+            if img.format.upper() not in ['JPEG', 'PNG']:
+                raise forms.ValidationError(
+                    'Formato de imagem não suportado. Use JPG ou PNG.'
+                )
+        except Exception:
             raise forms.ValidationError(
-                'Formato de arquivo não suportado. Use apenas JPG ou PNG.'
+                'Arquivo de imagem inválido ou corrompido.'
             )
 
+        # Reset file pointer
+        avatar.seek(0)
         return avatar

@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Sum
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
@@ -23,6 +24,15 @@ class AccountListView(LoginRequiredMixin, ListView):
         Ordered by name (default from model Meta).
         """
         return Account.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        """
+        Add total balance of all accounts to context.
+        """
+        context = super().get_context_data(**kwargs)
+        total = self.get_queryset().aggregate(total=Sum('current_balance'))['total']
+        context['total_balance'] = total or 0
+        return context
 
 
 class AccountCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
