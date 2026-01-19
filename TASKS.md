@@ -462,42 +462,42 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - profiles/signals.py
 
 #### Tarefa 21: Forms de Category
-- [ ] 21.1 - Criar CategoryForm
+- [X] 21.1 - Criar CategoryForm
   - categories/forms.py
   - ModelForm do Category
   - Campos: name, category_type, color
   - Excluir is_default
-- [ ] 21.2 - Implementar color picker
+- [X] 21.2 - Implementar color picker
   - Input type="color"
   - Estilização customizada
   - Valor padrão
-- [ ] 21.3 - Validação de nome único
+- [X] 21.3 - Validação de nome único
   - Por usuário
   - Mensagem de erro clara
-- [ ] 21.4 - Prevenir edição de categorias padrão
+- [X] 21.4 - Prevenir edição de categorias padrão
   - Verificação no form
   - Ou desabilitar campos
 
 #### Tarefa 22: Views de Category
-- [ ] 22.1 - Criar CategoryListView
+- [X] 22.1 - Criar CategoryListView
   - categories/views.py
   - Separar receitas e despesas
   - Filtrar por user
   - LoginRequiredMixin
-- [ ] 22.2 - Criar CategoryCreateView
+- [X] 22.2 - Criar CategoryCreateView
   - Associar user automaticamente
   - is_default = False
   - Success message
-- [ ] 22.3 - Criar CategoryUpdateView
+- [X] 22.3 - Criar CategoryUpdateView
   - Verificar propriedade
   - Não permitir editar is_default=True
   - Success message
-- [ ] 22.4 - Criar CategoryDeleteView
+- [X] 22.4 - Criar CategoryDeleteView
   - Verificar se tem transações
   - Não permitir deletar is_default=True
   - Confirmação
   - Success message
-- [ ] 22.5 - Adicionar validação de transações vinculadas
+- [X] 22.5 - Adicionar validação de transações vinculadas
   - Query para verificar
   - Mensagem de erro se houver
 
