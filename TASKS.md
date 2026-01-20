@@ -688,30 +688,30 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 6 - Dashboard (Semana 8)
 
 #### Tarefa 33: View do Dashboard
-- [ ] 33.1 - Criar DashboardView
+- [X] 33.1 - Criar DashboardView
   - Criar app 'dashboard' ou usar em core
   - TemplateView
   - LoginRequiredMixin
-- [ ] 33.2 - Implementar cálculo de saldo total
+- [X] 33.2 - Implementar cálculo de saldo total
   - Somar current_balance de todas as contas ativas
   - Do usuário logado
-- [ ] 33.3 - Implementar cálculo de receitas do período
+- [X] 33.3 - Implementar cálculo de receitas do período
   - Filtrar transações type=income
   - Por período selecionado
   - Somar amounts
-- [ ] 33.4 - Implementar cálculo de despesas do período
+- [X] 33.4 - Implementar cálculo de despesas do período
   - Filtrar transações type=expense
   - Por período selecionado
   - Somar amounts
-- [ ] 33.5 - Calcular saldo do período
+- [X] 33.5 - Calcular saldo do período
   - receitas - despesas
-- [ ] 33.6 - Buscar últimas 5 transações
+- [X] 33.6 - Buscar últimas 5 transações
   - Ordenar por data desc
   - Limitar a 5
-- [ ] 33.7 - Calcular resumo por categoria
+- [X] 33.7 - Calcular resumo por categoria
   - Top 5 categorias com mais despesas
   - Agrupar e somar
-- [ ] 33.8 - Implementar seletor de período
+- [X] 33.8 - Implementar seletor de período
   - Mês atual (padrão)
   - Mês anterior
   - Últimos 3 meses
@@ -719,21 +719,21 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Período customizado
 
 #### Tarefa 34: Template do Dashboard
-- [ ] 34.1 - Criar templates/dashboard/
-- [ ] 34.2 - Criar dashboard.html
+- [X] 34.1 - Criar templates/dashboard/
+- [X] 34.2 - Criar dashboard.html
   - Estrutura com grid responsivo
   - 4 cards de métricas principais
   - Seletor de período
-- [ ] 34.3 - Cards de métricas
+- [X] 34.3 - Cards de métricas
   - Saldo Total (gradiente verde/azul)
   - Receitas do Período (verde)
   - Despesas do Período (vermelho)
   - Saldo do Período (azul/roxo)
   - Valores formatados em R$
-- [ ] 34.4 - Seção de últimas transações
+- [X] 34.4 - Seção de últimas transações
   - Lista estilizada
   - Link "Ver todas"
-- [ ] 34.5 - Seção de resumo por categoria
+- [X] 34.5 - Seção de resumo por categoria
   - Cards ou barras
   - Cores das categorias
   - Percentuais
@@ -741,13 +741,13 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Chart.js via CDN
   - Gráfico de pizza ou barras
   - Receitas vs Despesas
-- [ ] 34.7 - Responsividade
+- [X] 34.7 - Responsividade
   - Mobile: cards em coluna
   - Tablet: 2 colunas
   - Desktop: 4 colunas
 
 #### Tarefa 35: URLs e Navegação
-- [ ] 35.1 - Criar URL do dashboard
+- [X] 35.1 - Criar URL do dashboard
   - dashboard/ ou home/
   - Incluir em core/urls.py
 - [ ] 35.2 - Configurar LOGIN_REDIRECT_URL
