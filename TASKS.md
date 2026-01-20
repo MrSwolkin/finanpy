@@ -670,18 +670,18 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 - [X] 31.2 - Incluir em core/urls.py
 
 #### Tarefa 32: JavaScript para Filtros Dinâmicos
-- [ ] 32.1 - Criar static/js/transactions.js
-- [ ] 32.2 - Implementar filtro de categoria por tipo
+- [X] 32.1 - Criar static/js/transactions.js
+- [X] 32.2 - Implementar filtro de categoria por tipo
   - Listener no campo transaction_type
   - Filtrar options do select de categoria
   - Show/hide baseado no tipo
-- [ ] 32.3 - Implementar date picker
+- [X] 32.3 - Implementar date picker
   - Usar input type="date"
   - Ou biblioteca leve se necessário
-- [ ] 32.4 - Validação de valor numérico
+- [X] 32.4 - Validação de valor numérico
   - Aceitar apenas números e vírgula/ponto
   - Formatar em tempo real
-- [ ] 32.5 - Incluir script nos templates
+- [X] 32.5 - Incluir script nos templates
 
 ---
 
