@@ -1,0 +1,275 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Dashboard - Finanpy{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="container mx-auto max-w-7xl">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+                <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                    Dashboard
+                </span>
+            </h1>
+            <p class="text-gray-400 text-sm md:text-base">
+                Visão geral das suas finanças
+            </p>
+        </div>
+
+        <!-- Period Selector -->
+        <div class="mb-6">
+            <form method="get" action="{% url 'dashboard' %}" class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
+                    <div class="flex-1 w-full sm:w-auto">
+                        <label for="period" class="block text-sm font-medium text-gray-300 mb-2">
+                            Período
+                        </label>
+                        <select
+                            name="period"
+                            id="period"
+                            class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            onchange="toggleCustomDates()"
+                        >
+                            <option value="current_month" {% if selected_period == 'current_month' %}selected{% endif %}>Mês Atual</option>
+                            <option value="last_month" {% if selected_period == 'last_month' %}selected{% endif %}>Mês Anterior</option>
+                            <option value="last_3_months" {% if selected_period == 'last_3_months' %}selected{% endif %}>Últimos 3 Meses</option>
+                            <option value="current_year" {% if selected_period == 'current_year' %}selected{% endif %}>Ano Atual</option>
+                            <option value="custom" {% if selected_period == 'custom' %}selected{% endif %}>Período Customizado</option>
+                        </select>
+                    </div>
+
+                    <!-- Custom Date Fields -->
+                    <div id="custom-dates" class="flex-1 w-full sm:w-auto gap-4 hidden">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="date_from" class="block text-sm font-medium text-gray-300 mb-2">
+                                    De
+                                </label>
+                                <input
+                                    type="date"
+                                    name="date_from"
+                                    id="date_from"
+                                    value="{{ date_from|date:'Y-m-d' }}"
+                                    class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                >
+                            </div>
+                            <div>
+                                <label for="date_to" class="block text-sm font-medium text-gray-300 mb-2">
+                                    Até
+                                </label>
+                                <input
+                                    type="date"
+                                    name="date_to"
+                                    id="date_to"
+                                    value="{{ date_to|date:'Y-m-d' }}"
+                                    class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl w-full sm:w-auto"
+                    >
+                        Filtrar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Metrics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Balance Card -->
+            <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-white/80 text-sm font-medium">Saldo Total</h3>
+                    <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <p class="text-3xl font-bold text-white mb-1">
+                    R$ {{ total_balance|floatformat:2 }}
+                </p>
+                <p class="text-white/60 text-xs">Em todas as contas ativas</p>
+            </div>
+
+            <!-- Period Income Card -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-gray-300 text-sm font-medium">Receitas do Período</h3>
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <p class="text-3xl font-bold text-green-400 mb-1">
+                    R$ {{ period_income|floatformat:2 }}
+                </p>
+                <p class="text-gray-500 text-xs">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
+            </div>
+
+            <!-- Period Expenses Card -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-gray-300 text-sm font-medium">Despesas do Período</h3>
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                    </svg>
+                </div>
+                <p class="text-3xl font-bold text-red-400 mb-1">
+                    R$ {{ period_expenses|floatformat:2 }}
+                </p>
+                <p class="text-gray-500 text-xs">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
+            </div>
+
+            <!-- Period Balance Card -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-gray-300 text-sm font-medium">Saldo do Período</h3>
+                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <p class="text-3xl font-bold {% if period_balance >= 0 %}text-blue-400{% else %}text-red-400{% endif %} mb-1">
+                    R$ {{ period_balance|floatformat:2 }}
+                </p>
+                <p class="text-gray-500 text-xs">Receitas - Despesas</p>
+            </div>
+        </div>
+
+        <!-- Recent Transactions and Category Summary -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Recent Transactions -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-100">Transações Recentes</h2>
+                    <a
+                        href="{% url 'transactions:list' %}"
+                        class="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors"
+                    >
+                        Ver todas
+                    </a>
+                </div>
+
+                {% if recent_transactions %}
+                    <div class="space-y-4">
+                        {% for transaction in recent_transactions %}
+                        <div class="flex items-center justify-between p-4 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-colors">
+                            <div class="flex items-center space-x-4 flex-1 min-w-0">
+                                <div class="flex-shrink-0">
+                                    {% if transaction.transaction_type == 'income' %}
+                                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                            </svg>
+                                        </div>
+                                    {% else %}
+                                        <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                                            </svg>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-gray-100 font-medium truncate">{{ transaction.description }}</p>
+                                    <div class="flex items-center space-x-2 text-sm text-gray-400">
+                                        <span>{{ transaction.category.name }}</span>
+                                        <span>•</span>
+                                        <span>{{ transaction.transaction_date|date:'d/m/Y' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right ml-4">
+                                <p class="font-bold {% if transaction.transaction_type == 'income' %}text-green-400{% else %}text-red-400{% endif %}">
+                                    {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %}
+                                    R$ {{ transaction.amount|floatformat:2 }}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-12">
+                        <svg class="w-16 h-16 text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <p class="text-gray-400 mb-4">Nenhuma transação registrada</p>
+                        <a
+                            href="{% url 'transactions:create' %}"
+                            class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Nova Transação
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Category Summary -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-gray-100">Top Categorias de Despesas</h2>
+                    <p class="text-sm text-gray-400 mt-1">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
+                </div>
+
+                {% if category_summary %}
+                    <div class="space-y-4">
+                        {% for category in category_summary %}
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div
+                                        class="w-4 h-4 rounded-full"
+                                        style="background-color: {{ category.category__color }};"
+                                    ></div>
+                                    <span class="text-gray-100 font-medium">{{ category.category__name }}</span>
+                                </div>
+                                <span class="text-red-400 font-bold">R$ {{ category.total|floatformat:2 }}</span>
+                            </div>
+                            <!-- Progress bar -->
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div
+                                    class="h-2 rounded-full transition-all"
+                                    style="width: {% widthratio category.total period_expenses 100 %}%; background-color: {{ category.category__color }};"
+                                ></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-12">
+                        <svg class="w-16 h-16 text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        <p class="text-gray-400">Nenhuma despesa no período selecionado</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleCustomDates() {
+        const periodSelect = document.getElementById('period');
+        const customDatesDiv = document.getElementById('custom-dates');
+
+        if (periodSelect.value === 'custom') {
+            customDatesDiv.classList.remove('hidden');
+            customDatesDiv.classList.add('flex');
+        } else {
+            customDatesDiv.classList.add('hidden');
+            customDatesDiv.classList.remove('flex');
+        }
+    }
+
+    // Run on page load to show custom dates if selected
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleCustomDates();
+    });
+</script>
+{% endblock %}

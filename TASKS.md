@@ -574,74 +574,74 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Importar signals
 
 #### Tarefa 27: Forms de Transaction
-- [ ] 27.1 - Criar TransactionForm
+- [X] 27.1 - Criar TransactionForm
   - transactions/forms.py
   - ModelForm do Transaction
   - Campos: description, amount, transaction_date, transaction_type, category, account
-- [ ] 27.2 - Filtrar categorias por tipo
+- [X] 27.2 - Filtrar categorias por tipo
   - JavaScript ou lógica no form
   - Ao selecionar tipo, filtrar categorias
-- [ ] 27.3 - Filtrar contas do usuário
+- [X] 27.3 - Filtrar contas do usuário
   - Apenas contas ativas
   - Do usuário logado
-- [ ] 27.4 - Widgets customizados
+- [X] 27.4 - Widgets customizados
   - Date picker
   - Input de valor formatado
   - Select estilizado
-- [ ] 27.5 - Validações
+- [X] 27.5 - Validações
   - Valor positivo
   - Data não futura (opcional)
   - Campos obrigatórios
 
 #### Tarefa 28: Views de Transaction
-- [ ] 28.1 - Criar TransactionListView
+- [X] 28.1 - Criar TransactionListView
   - transactions/views.py
   - ListView com paginação (20 items)
   - Filtrar por user
   - LoginRequiredMixin
   - Ordenar por data desc
-- [ ] 28.2 - Criar TransactionCreateView
+- [X] 28.2 - Criar TransactionCreateView
   - CreateView
   - Associar user automaticamente
   - Data padrão = hoje
   - Success message
   - Redirect para list
-- [ ] 28.3 - Criar TransactionUpdateView
+- [X] 28.3 - Criar TransactionUpdateView
   - UpdateView
   - Verificar propriedade
   - Success message
-- [ ] 28.4 - Criar TransactionDeleteView
+- [X] 28.4 - Criar TransactionDeleteView
   - DeleteView
   - Confirmação
   - Success message
-- [ ] 28.5 - Criar TransactionDetailView (opcional)
+- [X] 28.5 - Criar TransactionDetailView (opcional)
   - DetailView
   - Exibir todos os detalhes
 
 #### Tarefa 29: Filtros de Transaction
-- [ ] 29.1 - Criar TransactionFilterForm
+- [X] 29.1 - Criar TransactionFilterForm
   - forms.py
   - Campos: date_from, date_to, transaction_type, category, account
   - Todos opcionais
-- [ ] 29.2 - Implementar filtros na ListView
+- [X] 29.2 - Implementar filtros na ListView
   - Obter parâmetros GET
   - Aplicar filtros na queryset
   - Passar form para template
-- [ ] 29.3 - Calcular totais filtrados
+- [X] 29.3 - Calcular totais filtrados
   - Total de receitas
   - Total de despesas
   - Saldo (receitas - despesas)
   - Passar para context
-- [ ] 29.4 - Preservar filtros na URL
+- [X] 29.4 - Preservar filtros na URL
   - Query params
   - Pagination com filtros
-- [ ] 29.5 - Botão "Limpar Filtros"
+- [X] 29.5 - Botão "Limpar Filtros"
   - Remover todos os params
   - Voltar à lista completa
 
 #### Tarefa 30: Templates de Transaction
-- [ ] 30.1 - Criar templates/transactions/
-- [ ] 30.2 - Criar transaction_list.html
+- [X] 30.1 - Criar templates/transactions/
+- [X] 30.2 - Criar transaction_list.html
   - Formulário de filtros no topo
   - Cards de totais (receitas, despesas, saldo)
   - Tabela de transações
@@ -649,69 +649,69 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Paginação
   - Empty state
   - Botão "Nova Transação"
-- [ ] 30.3 - Criar transaction_form.html
+- [X] 30.3 - Criar transaction_form.html
   - Formulário completo
   - JavaScript para filtro de categorias
   - Date picker
   - Validações visuais
-- [ ] 30.4 - Criar transaction_confirm_delete.html
+- [X] 30.4 - Criar transaction_confirm_delete.html
   - Confirmação com detalhes
   - Avisar sobre impacto no saldo
-- [ ] 30.5 - Adicionar no menu
+- [X] 30.5 - Adicionar no menu
   - Link "Transações"
 
 #### Tarefa 31: URLs de Transaction
-- [ ] 31.1 - Criar transactions/urls.py
+- [X] 31.1 - Criar transactions/urls.py
   - transactions/ (list com filtros)
   - transactions/create/
   - transactions/<pk>/
   - transactions/<pk>/edit/
   - transactions/<pk>/delete/
-- [ ] 31.2 - Incluir em core/urls.py
+- [X] 31.2 - Incluir em core/urls.py
 
 #### Tarefa 32: JavaScript para Filtros Dinâmicos
-- [ ] 32.1 - Criar static/js/transactions.js
-- [ ] 32.2 - Implementar filtro de categoria por tipo
+- [X] 32.1 - Criar static/js/transactions.js
+- [X] 32.2 - Implementar filtro de categoria por tipo
   - Listener no campo transaction_type
   - Filtrar options do select de categoria
   - Show/hide baseado no tipo
-- [ ] 32.3 - Implementar date picker
+- [X] 32.3 - Implementar date picker
   - Usar input type="date"
   - Ou biblioteca leve se necessário
-- [ ] 32.4 - Validação de valor numérico
+- [X] 32.4 - Validação de valor numérico
   - Aceitar apenas números e vírgula/ponto
   - Formatar em tempo real
-- [ ] 32.5 - Incluir script nos templates
+- [X] 32.5 - Incluir script nos templates
 
 ---
 
 ### Sprint 6 - Dashboard (Semana 8)
 
 #### Tarefa 33: View do Dashboard
-- [ ] 33.1 - Criar DashboardView
+- [X] 33.1 - Criar DashboardView
   - Criar app 'dashboard' ou usar em core
   - TemplateView
   - LoginRequiredMixin
-- [ ] 33.2 - Implementar cálculo de saldo total
+- [X] 33.2 - Implementar cálculo de saldo total
   - Somar current_balance de todas as contas ativas
   - Do usuário logado
-- [ ] 33.3 - Implementar cálculo de receitas do período
+- [X] 33.3 - Implementar cálculo de receitas do período
   - Filtrar transações type=income
   - Por período selecionado
   - Somar amounts
-- [ ] 33.4 - Implementar cálculo de despesas do período
+- [X] 33.4 - Implementar cálculo de despesas do período
   - Filtrar transações type=expense
   - Por período selecionado
   - Somar amounts
-- [ ] 33.5 - Calcular saldo do período
+- [X] 33.5 - Calcular saldo do período
   - receitas - despesas
-- [ ] 33.6 - Buscar últimas 5 transações
+- [X] 33.6 - Buscar últimas 5 transações
   - Ordenar por data desc
   - Limitar a 5
-- [ ] 33.7 - Calcular resumo por categoria
+- [X] 33.7 - Calcular resumo por categoria
   - Top 5 categorias com mais despesas
   - Agrupar e somar
-- [ ] 33.8 - Implementar seletor de período
+- [X] 33.8 - Implementar seletor de período
   - Mês atual (padrão)
   - Mês anterior
   - Últimos 3 meses
@@ -719,21 +719,21 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Período customizado
 
 #### Tarefa 34: Template do Dashboard
-- [ ] 34.1 - Criar templates/dashboard/
-- [ ] 34.2 - Criar dashboard.html
+- [X] 34.1 - Criar templates/dashboard/
+- [X] 34.2 - Criar dashboard.html
   - Estrutura com grid responsivo
   - 4 cards de métricas principais
   - Seletor de período
-- [ ] 34.3 - Cards de métricas
+- [X] 34.3 - Cards de métricas
   - Saldo Total (gradiente verde/azul)
   - Receitas do Período (verde)
   - Despesas do Período (vermelho)
   - Saldo do Período (azul/roxo)
   - Valores formatados em R$
-- [ ] 34.4 - Seção de últimas transações
+- [X] 34.4 - Seção de últimas transações
   - Lista estilizada
   - Link "Ver todas"
-- [ ] 34.5 - Seção de resumo por categoria
+- [X] 34.5 - Seção de resumo por categoria
   - Cards ou barras
   - Cores das categorias
   - Percentuais
@@ -741,13 +741,13 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Chart.js via CDN
   - Gráfico de pizza ou barras
   - Receitas vs Despesas
-- [ ] 34.7 - Responsividade
+- [X] 34.7 - Responsividade
   - Mobile: cards em coluna
   - Tablet: 2 colunas
   - Desktop: 4 colunas
 
 #### Tarefa 35: URLs e Navegação
-- [ ] 35.1 - Criar URL do dashboard
+- [X] 35.1 - Criar URL do dashboard
   - dashboard/ ou home/
   - Incluir em core/urls.py
 - [ ] 35.2 - Configurar LOGIN_REDIRECT_URL
@@ -764,45 +764,45 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 7 - Landing Page Pública (Semana 9)
 
 #### Tarefa 36: View da Landing Page
-- [ ] 36.1 - Criar LandingPageView
+- [X] 36.1 - Criar LandingPageView
   - core/views.py ou app 'website'
   - TemplateView
   - Acessível sem login
-- [ ] 36.2 - Verificar se usuário está autenticado
+- [X] 36.2 - Verificar se usuário está autenticado
   - Se sim, redirect para dashboard
   - Se não, mostrar landing page
 
 #### Tarefa 37: Template da Landing Page
-- [ ] 37.1 - Criar templates/landing/
-- [ ] 37.2 - Criar landing.html
+- [X] 37.1 - Criar templates/landing/
+- [X] 37.2 - Criar landing.html
   - Hero section com gradiente
   - Título e subtítulo atrativos
   - CTAs: "Cadastre-se Grátis" e "Entrar"
-- [ ] 37.3 - Seção de benefícios
+- [X] 37.3 - Seção de benefícios
   - 3-4 cards com features principais
   - Ícones ou emojis
   - Textos persuasivos
-- [ ] 37.4 - Seção de como funciona
+- [X] 37.4 - Seção de como funciona
   - Passos numerados
   - Descrições curtas
-- [ ] 37.5 - Footer
+- [X] 37.5 - Footer
   - Nome do projeto
   - Ano
   - Links úteis (futuro)
-- [ ] 37.6 - Design moderno
+- [X] 37.6 - Design moderno
   - Gradientes
   - Animações suaves (hover, scroll)
   - Totalmente responsivo
-- [ ] 37.7 - Otimizar textos
+- [X] 37.7 - Otimizar textos
   - Português claro
   - Foco em benefícios
   - Call to action forte
 
 #### Tarefa 38: URLs da Landing Page
-- [ ] 38.1 - Configurar URL raiz
+- [X] 38.1 - Configurar URL raiz
   - path('', LandingPageView.as_view())
   - core/urls.py
-- [ ] 38.2 - Testar redirecionamento
+- [X] 38.2 - Testar redirecionamento
   - Usuário logado → dashboard
   - Usuário não logado → landing
 

@@ -20,24 +20,14 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
-from django.contrib.auth.decorators import login_required
 
-
-# Temporary dashboard view - redirects to accounts list
-class DashboardRedirectView(RedirectView):
-    """Temporary redirect to accounts until real dashboard is implemented."""
-    pattern_name = 'accounts:list'
-
-    def get_redirect_url(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return super().get_redirect_url(*args, **kwargs)
-        return '/login/'
+from core.views import DashboardView
 
 
 urlpatterns = [
-    # Temporary routes until Sprint 6-7 (Dashboard and Landing Page)
+    # Main routes
     path('', RedirectView.as_view(url='/login/', permanent=False), name='home'),
-    path('dashboard/', login_required(DashboardRedirectView.as_view()), name='dashboard'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
@@ -45,6 +35,7 @@ urlpatterns = [
     path("", include("profiles.urls")),
     path("accounts/", include("accounts.urls")),
     path("categories/", include("categories.urls")),
+    path("transactions/", include("transactions.urls")),
 ]
 
 # Serve media files in development
