@@ -619,29 +619,29 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Exibir todos os detalhes
 
 #### Tarefa 29: Filtros de Transaction
-- [ ] 29.1 - Criar TransactionFilterForm
+- [X] 29.1 - Criar TransactionFilterForm
   - forms.py
   - Campos: date_from, date_to, transaction_type, category, account
   - Todos opcionais
-- [ ] 29.2 - Implementar filtros na ListView
+- [X] 29.2 - Implementar filtros na ListView
   - Obter parâmetros GET
   - Aplicar filtros na queryset
   - Passar form para template
-- [ ] 29.3 - Calcular totais filtrados
+- [X] 29.3 - Calcular totais filtrados
   - Total de receitas
   - Total de despesas
   - Saldo (receitas - despesas)
   - Passar para context
-- [ ] 29.4 - Preservar filtros na URL
+- [X] 29.4 - Preservar filtros na URL
   - Query params
   - Pagination com filtros
-- [ ] 29.5 - Botão "Limpar Filtros"
+- [X] 29.5 - Botão "Limpar Filtros"
   - Remover todos os params
   - Voltar à lista completa
 
 #### Tarefa 30: Templates de Transaction
-- [ ] 30.1 - Criar templates/transactions/
-- [ ] 30.2 - Criar transaction_list.html
+- [X] 30.1 - Criar templates/transactions/
+- [X] 30.2 - Criar transaction_list.html
   - Formulário de filtros no topo
   - Cards de totais (receitas, despesas, saldo)
   - Tabela de transações
@@ -649,25 +649,25 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Paginação
   - Empty state
   - Botão "Nova Transação"
-- [ ] 30.3 - Criar transaction_form.html
+- [X] 30.3 - Criar transaction_form.html
   - Formulário completo
   - JavaScript para filtro de categorias
   - Date picker
   - Validações visuais
-- [ ] 30.4 - Criar transaction_confirm_delete.html
+- [X] 30.4 - Criar transaction_confirm_delete.html
   - Confirmação com detalhes
   - Avisar sobre impacto no saldo
-- [ ] 30.5 - Adicionar no menu
+- [X] 30.5 - Adicionar no menu
   - Link "Transações"
 
 #### Tarefa 31: URLs de Transaction
-- [ ] 31.1 - Criar transactions/urls.py
+- [X] 31.1 - Criar transactions/urls.py
   - transactions/ (list com filtros)
   - transactions/create/
   - transactions/<pk>/
   - transactions/<pk>/edit/
   - transactions/<pk>/delete/
-- [ ] 31.2 - Incluir em core/urls.py
+- [X] 31.2 - Incluir em core/urls.py
 
 #### Tarefa 32: JavaScript para Filtros Dinâmicos
 - [ ] 32.1 - Criar static/js/transactions.js

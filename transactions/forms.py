@@ -203,3 +203,100 @@ class TransactionForm(forms.ModelForm):
                 pass
 
         return cleaned_data
+
+
+class TransactionFilterForm(forms.Form):
+    """
+    Form for filtering transactions.
+    All fields are optional to allow flexible filtering.
+    Querysets for category and account are filtered by user in the view.
+    """
+
+    # Transaction type choices matching the Transaction model
+    TRANSACTION_TYPE_CHOICES = [
+        ('', 'Todos os tipos'),
+        (Transaction.INCOME, 'Receita'),
+        (Transaction.EXPENSE, 'Despesa'),
+    ]
+
+    date_from = forms.DateField(
+        required=False,
+        label='Data inicial',
+        widget=forms.DateInput(attrs={
+            'type': 'date',
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+        })
+    )
+
+    date_to = forms.DateField(
+        required=False,
+        label='Data final',
+        widget=forms.DateInput(attrs={
+            'type': 'date',
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+        })
+    )
+
+    transaction_type = forms.ChoiceField(
+        required=False,
+        label='Tipo de transação',
+        choices=TRANSACTION_TYPE_CHOICES,
+        widget=forms.Select(attrs={
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+        })
+    )
+
+    category = forms.ModelChoiceField(
+        required=False,
+        label='Categoria',
+        queryset=Category.objects.none(),  # Will be set in __init__ based on user
+        empty_label='Todas as categorias',
+        widget=forms.Select(attrs={
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+        })
+    )
+
+    account = forms.ModelChoiceField(
+        required=False,
+        label='Conta',
+        queryset=Account.objects.none(),  # Will be set in __init__ based on user
+        empty_label='Todas as contas',
+        widget=forms.Select(attrs={
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+        })
+    )
+
+    def __init__(self, *args, **kwargs):
+        """
+        Initialize the form with user parameter.
+        Filters accounts and categories by the logged-in user.
+        """
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+        if self.user:
+            # Filter accounts: only active accounts belonging to the user
+            self.fields['account'].queryset = Account.objects.filter(
+                user=self.user,
+                is_active=True
+            ).order_by('name')
+
+            # Filter categories: all categories belonging to the user
+            self.fields['category'].queryset = Category.objects.filter(
+                user=self.user
+            ).order_by('category_type', 'name')
+
+    def clean(self):
+        """
+        Custom validation to ensure date_from is not greater than date_to.
+        """
+        cleaned_data = super().clean()
+        date_from = cleaned_data.get('date_from')
+        date_to = cleaned_data.get('date_to')
+
+        if date_from and date_to and date_from > date_to:
+            raise forms.ValidationError(
+                'A data inicial não pode ser maior que a data final.'
+            )
+
+        return cleaned_data
