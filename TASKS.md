@@ -886,22 +886,22 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 9 - Polimento e UX (Semana 11)
 
 #### Tarefa 42: Melhorias de UX
-- [ ] 42.1 - Implementar confirmações de exclusão
+- [X] 42.1 - Implementar confirmações de exclusão
   - Modals com SweetAlert2 ou nativo
   - Textos claros de confirmação
-- [ ] 42.2 - Melhorar feedback de ações
+- [X] 42.2 - Melhorar feedback de ações
   - Mensagens de sucesso mais visíveis
   - Duração adequada (3-5s)
   - Posição consistente
-- [ ] 42.3 - Loading states
+- [X] 42.3 - Loading states
   - Spinner ao submeter forms
   - Skeleton screens em listas
   - Desabilitar botões durante submit
-- [ ] 42.4 - Validações em tempo real
+- [X] 42.4 - Validações em tempo real
   - JavaScript para validar antes de submit
   - Feedback visual imediato
   - Mensagens claras
-- [ ] 42.5 - Tooltips e hints
+- [X] 42.5 - Tooltips e hints
   - Explicações em campos complexos
   - Ícones de ajuda
   - Instruções contextuais

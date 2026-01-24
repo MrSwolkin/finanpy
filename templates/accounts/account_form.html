@@ -39,7 +39,7 @@
             {% endif %}
 
             <!-- Account Form -->
-            <form method="post" action="" class="space-y-6">
+            <form method="post" action="" class="space-y-6" data-loading>
                 {% csrf_token %}
 
                 <!-- Account Name Field -->
@@ -70,6 +70,7 @@
                         {% if form.account_type.field.required %}
                         <span class="text-red-400">*</span>
                         {% endif %}
+                        {% include "components/tooltip.html" with text="Escolha o tipo de conta que melhor representa sua conta bancária." %}
                     </label>
                     {{ form.account_type }}
                     {% if form.account_type.help_text %}
@@ -92,6 +93,7 @@
                         {% if form.initial_balance.field.required %}
                         <span class="text-red-400">*</span>
                         {% endif %}
+                        {% include "components/tooltip.html" with text="Saldo inicial da conta. Pode ser negativo se você já tiver dívidas." %}
                     </label>
                     {{ form.initial_balance }}
                     {% if form.initial_balance.help_text %}
@@ -133,6 +135,7 @@
                     <button
                         type="submit"
                         class="flex-1 inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                        data-loading-text="{% if form.instance.pk %}Salvando...{% else %}Criando conta...{% endif %}"
                     >
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>

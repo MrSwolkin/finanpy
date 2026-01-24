@@ -1,36 +1,86 @@
+<!-- Messages Container - Enhanced with animations and progress bar -->
+<!-- ARIA live region for accessibility -->
+<div aria-live="polite" aria-atomic="false" class="sr-only">
+    Notificações do sistema
+</div>
+
 {% if messages %}
-<div class="fixed top-4 right-4 z-50 space-y-2 max-w-sm">
+<div data-messages-container class="fixed top-4 right-4 z-[9999] space-y-3 max-w-sm w-full px-4 sm:px-0">
     {% for message in messages %}
-    <div class="flex items-center p-4 rounded-lg shadow-lg {% if message.tags == 'success' %}bg-green-600 text-white{% elif message.tags == 'error' %}bg-red-600 text-white{% elif message.tags == 'warning' %}bg-yellow-500 text-gray-900{% elif message.tags == 'info' %}bg-blue-600 text-white{% else %}bg-gray-700 text-gray-100{% endif %}" role="alert">
-        <div class="flex-shrink-0">
-            {% if message.tags == 'success' %}
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-            </svg>
-            {% elif message.tags == 'error' %}
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-            </svg>
-            {% elif message.tags == 'warning' %}
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-            </svg>
-            {% elif message.tags == 'info' %}
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-            </svg>
-            {% endif %}
+    {% with message_type=message.tags|default:'info' %}
+    <div data-message
+         data-message-type="{{ message_type }}"
+         role="alert"
+         aria-live="polite"
+         class="{% if message_type == 'success' %}bg-green-500/10 text-green-400 border border-green-500/30{% elif message_type == 'error' %}bg-red-500/10 text-red-400 border border-red-500/30{% elif message_type == 'warning' %}bg-yellow-500/10 text-yellow-400 border border-yellow-500/30{% elif message_type == 'info' %}bg-blue-500/10 text-blue-400 border border-blue-500/30{% else %}bg-gray-700 text-gray-100 border border-gray-600{% endif %} rounded-lg shadow-lg backdrop-blur-sm overflow-hidden">
+
+        <!-- Message Content -->
+        <div class="flex items-start p-4">
+            <!-- Icon -->
+            <div class="flex-shrink-0">
+                {% if message_type == 'success' %}
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                {% elif message_type == 'error' %}
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                </svg>
+                {% elif message_type == 'warning' %}
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+                {% elif message_type == 'info' %}
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+                {% endif %}
+            </div>
+
+            <!-- Message Text -->
+            <div class="ml-3 text-sm font-medium flex-1">
+                {{ message }}
+            </div>
+
+            <!-- Close Button -->
+            <button type="button"
+                    data-message-close
+                    class="ml-4 -mt-1 -mr-1 flex-shrink-0 p-1.5 rounded-lg hover:bg-black/20 focus:ring-2 focus:ring-white/50 transition-all duration-200"
+                    aria-label="Fechar notificação">
+                <span class="sr-only">Fechar</span>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
         </div>
-        <div class="ml-3 text-sm font-medium">
-            {{ message }}
+
+        <!-- Progress Bar -->
+        <div class="h-1 {% if message_type == 'success' %}bg-green-900/30{% elif message_type == 'error' %}bg-red-900/30{% elif message_type == 'warning' %}bg-yellow-900/30{% elif message_type == 'info' %}bg-blue-900/30{% else %}bg-gray-800{% endif %}">
+            <div data-message-progress
+                 class="{% if message_type == 'success' %}bg-green-500{% elif message_type == 'error' %}bg-red-500{% elif message_type == 'warning' %}bg-yellow-500{% elif message_type == 'info' %}bg-blue-500{% else %}bg-gray-600{% endif %} h-full w-full transition-all duration-100 ease-linear"
+                 role="progressbar"
+                 aria-label="Tempo restante da notificação">
+            </div>
         </div>
-        <button type="button" class="ml-auto -mx-1.5 -my-1.5 p-1.5 inline-flex h-8 w-8 rounded-lg hover:bg-black/20 focus:ring-2 focus:ring-white/50" onclick="this.parentElement.remove()">
-            <span class="sr-only">Fechar</span>
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
-        </button>
     </div>
+    {% endwith %}
     {% endfor %}
 </div>
+{% else %}
+<!-- Empty container for dynamically added messages -->
+<div data-messages-container class="fixed top-4 right-4 z-[9999] space-y-3 max-w-sm w-full px-4 sm:px-0" aria-live="polite"></div>
 {% endif %}
+
+<!-- CSS for hover effect -->
+<style>
+    /* Hover effect for messages */
+    [data-message].message-hovered {
+        transform: scale(1.02);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Smooth transitions */
+    [data-message] {
+        transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+    }
+</style>

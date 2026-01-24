@@ -17,7 +17,10 @@ class CustomUserCreationForm(UserCreationForm):
         help_text='Digite seu endereço de e-mail',
         widget=forms.EmailInput(attrs={
             'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
-            'placeholder': 'seu@email.com'
+            'placeholder': 'seu@email.com',
+            'data-validate': 'true',
+            'data-required': 'true',
+            'data-email': 'true'
         })
     )
 
@@ -26,7 +29,10 @@ class CustomUserCreationForm(UserCreationForm):
         help_text='Sua senha deve conter pelo menos 8 caracteres e não pode ser muito comum',
         widget=forms.PasswordInput(attrs={
             'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
-            'placeholder': '••••••••'
+            'placeholder': '••••••••',
+            'data-validate': 'true',
+            'data-required': 'true',
+            'data-min-length': '8'
         })
     )
 
@@ -35,7 +41,10 @@ class CustomUserCreationForm(UserCreationForm):
         help_text='Digite a mesma senha novamente para confirmação',
         widget=forms.PasswordInput(attrs={
             'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
-            'placeholder': '••••••••'
+            'placeholder': '••••••••',
+            'data-validate': 'true',
+            'data-required': 'true',
+            'data-match': 'id_password1'
         })
     )
 

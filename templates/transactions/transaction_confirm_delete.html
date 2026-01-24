@@ -120,7 +120,7 @@
 
         <!-- Confirmation Form -->
         <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6 md:p-8">
-            <form method="post" action="">
+            <form method="post" action="" data-delete-confirm data-item-name="{{ object.description }}" data-item-type="transação">
                 {% csrf_token %}
 
                 <p class="text-gray-300 mb-6 text-center">
@@ -170,4 +170,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{% load static %}
+<script src="{% static 'js/delete-confirm.js' %}"></script>
 {% endblock %}

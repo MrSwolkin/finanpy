@@ -63,12 +63,17 @@ class TransactionForm(forms.ModelForm):
             'description': forms.TextInput(attrs={
                 'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
                 'placeholder': 'Ex: Pagamento de conta de luz',
+                'data-validate': 'true',
+                'data-required': 'true',
             }),
             'amount': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
                 'placeholder': '0,00',
                 'step': '0.01',
                 'min': '0.01',
+                'data-validate': 'true',
+                'data-required': 'true',
+                'data-positive': 'true',
             }),
             'transaction_date': forms.DateInput(attrs={
                 'type': 'date',
