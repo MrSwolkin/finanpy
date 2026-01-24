@@ -838,24 +838,24 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Sombra ao scroll
 
 #### Tarefa 40: Base Template Refinamento
-- [ ] 40.1 - Atualizar base.html
+- [X] 40.1 - Atualizar base.html
   - Incluir navbar
   - Incluir messages
   - Estrutura de container
-- [ ] 40.2 - Criar partial de footer
+- [X] 40.2 - Criar partial de footer
   - templates/partials/footer.html
   - Informações básicas
   - Simples e discreto
-- [ ] 40.3 - Configurar blocks
+- [X] 40.3 - Configurar blocks
   - {% block title %}
   - {% block content %}
   - {% block extra_css %}
   - {% block extra_js %}
-- [ ] 40.4 - Adicionar meta tags
+- [X] 40.4 - Adicionar meta tags
   - Viewport
   - Description
   - Charset UTF-8
-- [ ] 40.5 - Favicon
+- [X] 40.5 - Favicon
   - Criar ou usar emoji
   - Adicionar no base.html
 
