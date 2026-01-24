@@ -860,23 +860,23 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Adicionar no base.html
 
 #### Tarefa 41: Consistência Visual
-- [ ] 41.1 - Revisar todos os templates
+- [X] 41.1 - Revisar todos os templates
   - Verificar uso consistente de cores
   - Verificar espaçamentos
   - Verificar tipografia
-- [ ] 41.2 - Padronizar botões
+- [X] 41.2 - Padronizar botões
   - Primário, secundário, danger
   - Tamanhos consistentes
   - Estados hover/active
-- [ ] 41.3 - Padronizar cards
+- [X] 41.3 - Padronizar cards
   - Mesmo estilo em todo sistema
   - Padding e borders iguais
   - Efeitos hover
-- [ ] 41.4 - Padronizar formulários
+- [X] 41.4 - Padronizar formulários
   - Mesmos inputs em todos os forms
   - Mensagens de erro no mesmo lugar
   - Botões alinhados
-- [ ] 41.5 - Criar componentes reutilizáveis
+- [X] 41.5 - Criar componentes reutilizáveis
   - templates/components/button.html
   - templates/components/card.html
   - templates/components/form_field.html

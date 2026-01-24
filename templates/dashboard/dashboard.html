@@ -28,7 +28,7 @@
                         <select
                             name="period"
                             id="period"
-                            class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                             onchange="toggleCustomDates()"
                         >
                             <option value="current_month" {% if selected_period == 'current_month' %}selected{% endif %}>Mês Atual</option>
@@ -51,7 +51,7 @@
                                     name="date_from"
                                     id="date_from"
                                     value="{{ date_from|date:'Y-m-d' }}"
-                                    class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                                 >
                             </div>
                             <div>
@@ -63,7 +63,7 @@
                                     name="date_to"
                                     id="date_to"
                                     value="{{ date_to|date:'Y-m-d' }}"
-                                    class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                    class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                                 >
                             </div>
                         </div>
@@ -81,7 +81,7 @@
 
         <!-- Metrics Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <!-- Total Balance Card -->
+            <!-- Total Balance Card (GRADIENT CARD) -->
             <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-2">
                     <h3 class="text-white/80 text-sm font-medium">Saldo Total</h3>

@@ -16,7 +16,7 @@ class CustomUserCreationForm(UserCreationForm):
         label='E-mail',
         help_text='Digite seu endereço de e-mail',
         widget=forms.EmailInput(attrs={
-            'class': 'w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
             'placeholder': 'seu@email.com'
         })
     )
@@ -25,7 +25,7 @@ class CustomUserCreationForm(UserCreationForm):
         label='Senha',
         help_text='Sua senha deve conter pelo menos 8 caracteres e não pode ser muito comum',
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
             'placeholder': '••••••••'
         })
     )
@@ -34,7 +34,7 @@ class CustomUserCreationForm(UserCreationForm):
         label='Confirme a senha',
         help_text='Digite a mesma senha novamente para confirmação',
         widget=forms.PasswordInput(attrs={
-            'class': 'w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent',
+            'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
             'placeholder': '••••••••'
         })
     )

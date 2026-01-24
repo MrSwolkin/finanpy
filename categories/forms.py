@@ -38,15 +38,15 @@ class CategoryForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(attrs={
-                'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+                'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
                 'placeholder': 'Ex: Salário, Alimentação, Transporte',
             }),
             'category_type': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+                'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
             }),
             'color': forms.TextInput(attrs={
                 'type': 'color',
-                'class': 'w-full h-12 px-2 py-1 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition duration-200',
+                'class': 'w-full h-12 px-2 py-1 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
                 'value': '#6b7280',
             }),
         }

@@ -27,7 +27,7 @@
 
         <!-- Warning for Default Categories -->
         {% if form.instance.pk and form.instance.is_default %}
-        <div class="mb-6 bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+        <div class="mb-6 bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6">
             <div class="flex items-start">
                 <svg class="w-5 h-5 text-yellow-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
@@ -46,7 +46,7 @@
         <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6 md:p-8">
             <!-- Form Errors (Non-field errors) -->
             {% if form.non_field_errors %}
-            <div class="mb-6 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+            <div class="mb-6 bg-red-500/10 border border-red-500/30 rounded-xl p-6">
                 <ul class="list-disc list-inside space-y-1">
                     {% for error in form.non_field_errors %}
                     <li class="text-red-400 text-sm">{{ error }}</li>
@@ -148,32 +148,28 @@
                     <!-- Submit Button -->
                     <button
                         type="submit"
-                        class="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl {% if form.instance.pk and form.instance.is_default %}opacity-50 cursor-not-allowed{% endif %}"
+                        class="flex-1 inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 {% if form.instance.pk and form.instance.is_default %}opacity-50 cursor-not-allowed{% endif %}"
                         {% if form.instance.pk and form.instance.is_default %}disabled{% endif %}
                     >
-                        <span class="flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            {% if form.instance.pk %}
-                            Salvar Alterações
-                            {% else %}
-                            Criar Categoria
-                            {% endif %}
-                        </span>
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        {% if form.instance.pk %}
+                        Salvar Alterações
+                        {% else %}
+                        Criar Categoria
+                        {% endif %}
                     </button>
 
                     <!-- Cancel Button -->
                     <a
                         href="{% url 'categories:list' %}"
-                        class="flex-1 px-6 py-3 bg-gray-700 text-gray-100 rounded-lg font-semibold hover:bg-gray-600 transition-all duration-200 text-center"
+                        class="flex-1 inline-flex items-center justify-center px-6 py-3 bg-gray-700 text-gray-100 rounded-lg font-semibold hover:bg-gray-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900"
                     >
-                        <span class="flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            Cancelar
-                        </span>
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        Cancelar
                     </a>
                 </div>
             </form>
@@ -181,7 +177,7 @@
 
         <!-- Info Box (only for create) -->
         {% if not form.instance.pk %}
-        <div class="mt-6 bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+        <div class="mt-6 bg-blue-500/10 border border-blue-500/30 rounded-xl p-6">
             <div class="flex items-start">
                 <svg class="w-5 h-5 text-blue-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>

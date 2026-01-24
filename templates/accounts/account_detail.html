@@ -21,7 +21,7 @@
                 <div class="flex gap-3">
                     <a
                         href="{% url 'accounts:edit' account.pk %}"
-                        class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
                     >
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -30,7 +30,7 @@
                     </a>
                     <a
                         href="{% url 'accounts:delete' account.pk %}"
-                        class="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        class="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900"
                     >
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -158,7 +158,7 @@
         <!-- Balance Summary Card -->
         <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <!-- Initial Balance Card -->
-            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-400 mb-2">Saldo Inicial</p>
@@ -175,7 +175,7 @@
             </div>
 
             <!-- Current Balance Card -->
-            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6">
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-400 mb-2">Saldo Atual</p>
@@ -193,8 +193,8 @@
         </div>
 
         <!-- Transactions Section (Placeholder) -->
-        <div class="mt-6 bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-8">
-            <div class="text-center">
+        <div class="mt-6 bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+            <div class="text-center py-12">
                 <svg class="w-16 h-16 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                 </svg>
