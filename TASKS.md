@@ -811,28 +811,28 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 8 - Navbar e Layout Global (Semana 10)
 
 #### Tarefa 39: Navbar Responsiva
-- [ ] 39.1 - Criar templates/partials/navbar.html
-- [ ] 39.2 - Implementar logo/brand
+- [X] 39.1 - Criar templates/partials/navbar.html
+- [X] 39.2 - Implementar logo/brand
   - Texto "Finanpy" com gradiente
   - Link para home (dashboard se logado)
-- [ ] 39.3 - Menu desktop
+- [X] 39.3 - Menu desktop
   - Links: Dashboard, Contas, Transações, Categorias
   - Destacar página ativa
   - Dropdown de perfil
-- [ ] 39.4 - Menu mobile
+- [X] 39.4 - Menu mobile
   - Botão hamburger
   - Sidebar ou dropdown
   - Mesmos links do desktop
-- [ ] 39.5 - Dropdown de usuário
+- [X] 39.5 - Dropdown de usuário
   - Nome do usuário
   - Avatar (se tiver)
   - Link "Meu Perfil"
   - Link "Sair"
-- [ ] 39.6 - JavaScript para menu mobile
+- [X] 39.6 - JavaScript para menu mobile
   - Toggle sidebar
   - Close ao clicar fora
   - static/js/navbar.js
-- [ ] 39.7 - Sticky navbar
+- [X] 39.7 - Sticky navbar
   - Fixed no topo
   - Backdrop blur
   - Sombra ao scroll
