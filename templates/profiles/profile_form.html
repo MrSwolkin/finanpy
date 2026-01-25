@@ -48,6 +48,7 @@
                                 alt="Foto de perfil atual de {{ form.instance.first_name }} {{ form.instance.last_name }}"
                                 class="w-24 h-24 rounded-full border-4 border-gray-700 object-cover shadow-lg"
                                 id="avatar-preview"
+                                loading="lazy"
                             >
                             {% else %}
                             <div class="w-24 h-24 rounded-full border-4 border-gray-700 bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center shadow-lg" id="avatar-preview-placeholder">
@@ -213,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         newImg.alt = 'Preview do avatar';
                         newImg.className = 'w-24 h-24 rounded-full border-4 border-gray-700 object-cover shadow-lg';
                         newImg.id = 'avatar-preview';
+                        newImg.loading = 'lazy';
                         previewPlaceholder.parentNode.replaceChild(newImg, previewPlaceholder);
                     }
                 };

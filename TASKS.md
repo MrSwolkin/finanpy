@@ -926,22 +926,22 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Title em links/botões
 
 #### Tarefa 44: Performance
-- [ ] 44.1 - Otimizar queries
+- [X] 44.1 - Otimizar queries
   - select_related para ForeignKeys
   - prefetch_related para M2M
   - Apenas campos necessários
-- [ ] 44.2 - Adicionar índices
+- [X] 44.2 - Adicionar índices
   - Campos mais consultados
   - created_at, transaction_date
-- [ ] 44.3 - Paginação eficiente
+- [X] 44.3 - Paginação eficiente
   - Limit/offset
   - Não carregar tudo
-- [ ] 44.4 - Otimizar CSS com django-tailwind
+- [X] 44.4 - Otimizar CSS com django-tailwind
   - TailwindCSS já vem configurado com purge
   - Verificar content paths em tailwind.config.js
   - Build para produção: `python manage.py tailwind build`
   - Apenas classes usadas serão incluídas
-- [ ] 44.5 - Lazy loading de imagens
+- [X] 44.5 - Lazy loading de imagens
   - Avatares
   - Imagens grandes (futuro)
 

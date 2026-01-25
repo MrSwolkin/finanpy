@@ -2,7 +2,7 @@ from datetime import date, timedelta
 from decimal import Decimal
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Sum, Q
+from django.db.models import Sum, Q, Case, When, DecimalField, Value
 from django.views.generic import TemplateView
 
 from accounts.models import Account
@@ -75,35 +75,36 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
         return total or Decimal('0.00')
 
-    def get_period_income(self, date_from, date_to):
+    def get_period_totals(self, date_from, date_to):
         """
-        Calculate total income for the specified period.
+        Calculate total income and expenses for the specified period in a single query.
+        Uses conditional aggregation to reduce database queries from 2 to 1.
         """
-        total = Transaction.objects.filter(
+        totals = Transaction.objects.filter(
             user=self.request.user,
-            transaction_type=Transaction.INCOME,
             transaction_date__gte=date_from,
             transaction_date__lte=date_to
         ).aggregate(
-            total=Sum('amount')
-        )['total']
+            income=Sum(
+                Case(
+                    When(transaction_type=Transaction.INCOME, then='amount'),
+                    default=Value(0),
+                    output_field=DecimalField()
+                )
+            ),
+            expense=Sum(
+                Case(
+                    When(transaction_type=Transaction.EXPENSE, then='amount'),
+                    default=Value(0),
+                    output_field=DecimalField()
+                )
+            )
+        )
 
-        return total or Decimal('0.00')
-
-    def get_period_expenses(self, date_from, date_to):
-        """
-        Calculate total expenses for the specified period.
-        """
-        total = Transaction.objects.filter(
-            user=self.request.user,
-            transaction_type=Transaction.EXPENSE,
-            transaction_date__gte=date_from,
-            transaction_date__lte=date_to
-        ).aggregate(
-            total=Sum('amount')
-        )['total']
-
-        return total or Decimal('0.00')
+        return {
+            'income': totals['income'] or Decimal('0.00'),
+            'expense': totals['expense'] or Decimal('0.00'),
+        }
 
     def get_recent_transactions(self):
         """
@@ -140,6 +141,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         """
         Add dashboard data to template context.
+        Optimized to reduce database queries using conditional aggregation.
         """
         context = super().get_context_data(**kwargs)
 
@@ -148,8 +150,9 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
         # Calculate metrics
         total_balance = self.get_total_balance()
-        period_income = self.get_period_income(date_from, date_to)
-        period_expenses = self.get_period_expenses(date_from, date_to)
+        period_totals = self.get_period_totals(date_from, date_to)
+        period_income = period_totals['income']
+        period_expenses = period_totals['expense']
         period_balance = period_income - period_expenses
 
         # Get data

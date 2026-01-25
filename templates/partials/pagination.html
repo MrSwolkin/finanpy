@@ -1,0 +1,77 @@
+{% comment %}
+Reusable pagination component for Django ListViews.
+
+Usage:
+    {% include 'partials/pagination.html' with page_obj=page_obj %}
+
+Optional parameters:
+    - item_name: Name of items being paginated (default: "itens")
+      Example: {% include 'partials/pagination.html' with page_obj=page_obj item_name="contas" %}
+
+Requirements:
+    - page_obj must be passed from ListView context
+    - Uses TailwindCSS dark theme styling
+    - All text in Portuguese (pt-BR)
+    - Preserves GET parameters when paginating
+{% endcomment %}
+
+{% if page_obj.has_other_pages %}
+<div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <!-- Item Count Info -->
+    <div class="text-sm text-gray-300">
+        Mostrando {{ page_obj.start_index }} a {{ page_obj.end_index }} de {{ page_obj.paginator.count }} {{ item_name|default:"itens" }}
+    </div>
+
+    <!-- Pagination Controls -->
+    <nav class="flex gap-2" role="navigation" aria-label="Navegação de páginas">
+        {% if page_obj.has_previous %}
+        <!-- First Page Button -->
+        <a
+            href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+            class="px-4 py-2 bg-gray-700 text-gray-100 rounded-lg font-medium hover:bg-gray-600 transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Ir para a primeira página"
+            title="Primeira página"
+        >
+            Primeira
+        </a>
+
+        <!-- Previous Page Button -->
+        <a
+            href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+            class="px-4 py-2 bg-gray-700 text-gray-100 rounded-lg font-medium hover:bg-gray-600 transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Ir para a página anterior (página {{ page_obj.previous_page_number }})"
+            title="Página {{ page_obj.previous_page_number }}"
+        >
+            Anterior
+        </a>
+        {% endif %}
+
+        <!-- Current Page Indicator -->
+        <span class="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold text-sm" aria-current="page">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <!-- Next Page Button -->
+        <a
+            href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+            class="px-4 py-2 bg-gray-700 text-gray-100 rounded-lg font-medium hover:bg-gray-600 transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Ir para a próxima página (página {{ page_obj.next_page_number }})"
+            title="Página {{ page_obj.next_page_number }}"
+        >
+            Próxima
+        </a>
+
+        <!-- Last Page Button -->
+        <a
+            href="?page={{ page_obj.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+            class="px-4 py-2 bg-gray-700 text-gray-100 rounded-lg font-medium hover:bg-gray-600 transition-all duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            aria-label="Ir para a última página (página {{ page_obj.paginator.num_pages }})"
+            title="Última página"
+        >
+            Última
+        </a>
+        {% endif %}
+    </nav>
+</div>
+{% endif %}

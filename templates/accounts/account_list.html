@@ -137,6 +137,10 @@
             </div>
             {% endfor %}
         </div>
+
+        <!-- Pagination -->
+        {% include 'partials/pagination.html' with page_obj=page_obj item_name="contas" %}
+
         {% else %}
         <!-- Empty State -->
         <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-12 text-center">

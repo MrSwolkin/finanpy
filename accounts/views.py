@@ -13,17 +13,25 @@ class AccountListView(LoginRequiredMixin, ListView):
     """
     Display list of user's bank accounts.
     Filters accounts to show only those belonging to the current user.
+    Includes pagination (12 items per page, good for grid layout).
     """
     model = Account
     template_name = 'accounts/account_list.html'
     context_object_name = 'accounts'
+    paginate_by = 12
 
     def get_queryset(self):
         """
         Filter accounts to only show those belonging to current user.
         Ordered by name (default from model Meta).
+        Optimized to only fetch fields displayed in the template.
         """
-        return Account.objects.filter(user=self.request.user)
+        return Account.objects.filter(
+            user=self.request.user
+        ).only(
+            'id', 'name', 'account_type', 'is_active',
+            'current_balance', 'created_at', 'updated_at'
+        )
 
     def get_context_data(self, **kwargs):
         """

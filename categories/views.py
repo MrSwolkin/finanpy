@@ -14,10 +14,12 @@ class CategoryListView(LoginRequiredMixin, ListView):
     Display list of user's transaction categories.
     Separates categories into income and expense types.
     Filters categories to show only those belonging to the current user.
+    Includes pagination (20 items per page).
     """
     model = Category
     template_name = 'categories/category_list.html'
     context_object_name = 'categories'
+    paginate_by = 20
 
     def get_queryset(self):
         """
@@ -29,19 +31,20 @@ class CategoryListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         """
         Add separate querysets for income and expense categories to context.
+        Optimized to use a single database query and split in Python.
         """
         context = super().get_context_data(**kwargs)
 
-        # Get all categories for current user
-        all_categories = self.get_queryset()
+        # Get all categories for current user in a single query
+        all_categories = list(self.get_queryset())
 
-        # Separate into income and expense categories
-        context['income_categories'] = all_categories.filter(
-            category_type=Category.INCOME
-        )
-        context['expense_categories'] = all_categories.filter(
-            category_type=Category.EXPENSE
-        )
+        # Separate into income and expense categories in Python (no additional DB queries)
+        context['income_categories'] = [
+            cat for cat in all_categories if cat.category_type == Category.INCOME
+        ]
+        context['expense_categories'] = [
+            cat for cat in all_categories if cat.category_type == Category.EXPENSE
+        ]
 
         return context
 

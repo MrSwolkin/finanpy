@@ -48,7 +48,8 @@
                         {% if user.profile and user.profile.avatar %}
                             <img src="{{ user.profile.avatar.url }}"
                                  alt="Foto de perfil de {{ user.profile.full_name }}"
-                                 class="w-8 h-8 rounded-full border-2 border-purple-600">
+                                 class="w-8 h-8 rounded-full border-2 border-purple-600"
+                                 loading="lazy">
                         {% else %}
                             <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center text-white font-semibold text-sm">
                                 {% if user.profile %}
@@ -174,7 +175,8 @@
                 {% if user.profile and user.profile.avatar %}
                     <img src="{{ user.profile.avatar.url }}"
                          alt="Foto de perfil de {{ user.profile.full_name }}"
-                         class="w-10 h-10 rounded-full border-2 border-purple-600">
+                         class="w-10 h-10 rounded-full border-2 border-purple-600"
+                         loading="lazy">
                 {% else %}
                     <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center text-white font-semibold">
                         {% if user.profile %}
