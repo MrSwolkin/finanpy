@@ -12,7 +12,7 @@
                     Finanpy
                 </span>
             </h1>
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-300 text-sm">
                 Gerencie suas finanças de forma simples e eficiente
             </p>
         </div>
@@ -42,21 +42,24 @@
                 <div>
                     <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         E-mail
+                        <span class="text-red-400" aria-hidden="true">*</span>
                     </label>
                     <input
                         type="email"
                         name="{{ form.username.name }}"
                         id="{{ form.username.id_for_label }}"
-                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                         placeholder="seu@email.com"
                         {% if form.username.value %}value="{{ form.username.value }}"{% endif %}
                         required
+                        aria-required="true"
+                        {% if form.username.errors %}aria-invalid="true" aria-describedby="id_username_error"{% else %}aria-invalid="false"{% endif %}
                         data-validate="true"
                         data-required="true"
                         data-email="true"
                     >
                     {% if form.username.errors %}
-                    <div class="mt-2">
+                    <div id="id_username_error" role="alert" class="mt-2">
                         {% for error in form.username.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -68,19 +71,22 @@
                 <div>
                     <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Senha
+                        <span class="text-red-400" aria-hidden="true">*</span>
                     </label>
                     <input
                         type="password"
                         name="{{ form.password.name }}"
                         id="{{ form.password.id_for_label }}"
-                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                        class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                         placeholder="••••••••"
                         required
+                        aria-required="true"
+                        {% if form.password.errors %}aria-invalid="true" aria-describedby="id_password_error"{% else %}aria-invalid="false"{% endif %}
                         data-validate="true"
                         data-required="true"
                     >
                     {% if form.password.errors %}
-                    <div class="mt-2">
+                    <div id="id_password_error" role="alert" class="mt-2">
                         {% for error in form.password.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -120,7 +126,7 @@
 
         <!-- Signup Link -->
         <div class="mt-6 text-center">
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-300 text-sm">
                 Não tem uma conta?
                 <a href="{% url 'users:signup' %}" class="text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-200">
                     Cadastre-se

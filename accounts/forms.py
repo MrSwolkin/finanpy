@@ -44,14 +44,20 @@ class AccountForm(forms.ModelForm):
                 'placeholder': 'Ex: Banco do Brasil - Conta Corrente',
                 'data-validate': 'true',
                 'data-required': 'true',
+                'aria-describedby': 'id_name_help',
+                'aria-required': 'true'
             }),
             'account_type': forms.Select(attrs={
                 'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
+                'aria-describedby': 'id_account_type_help',
+                'aria-required': 'true'
             }),
             'initial_balance': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
                 'placeholder': '0,00',
                 'step': '0.01',
+                'aria-describedby': 'id_initial_balance_help',
+                'aria-required': 'true'
             }),
         }
 

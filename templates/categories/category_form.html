@@ -64,15 +64,15 @@
                     <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Nome da Categoria
                         {% if form.name.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.name }}
                     {% if form.name.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.name.help_text }}</p>
+                    <p id="id_name_help" class="mt-2 text-xs text-gray-400">{{ form.name.help_text }}</p>
                     {% endif %}
                     {% if form.name.errors %}
-                    <div class="mt-2">
+                    <div id="id_name_error" role="alert" class="mt-2">
                         {% for error in form.name.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -85,15 +85,15 @@
                     <label for="{{ form.category_type.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Tipo
                         {% if form.category_type.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.category_type }}
                     {% if form.category_type.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.category_type.help_text }}</p>
+                    <p id="id_category_type_help" class="mt-2 text-xs text-gray-400">{{ form.category_type.help_text }}</p>
                     {% endif %}
                     {% if form.category_type.errors %}
-                    <div class="mt-2">
+                    <div id="id_category_type_error" role="alert" class="mt-2">
                         {% for error in form.category_type.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -106,7 +106,7 @@
                     <label for="{{ form.color.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Cor
                         {% if form.color.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                         {% include "components/tooltip.html" with text="Escolha uma cor para identificar esta categoria nos gráficos e listas." %}
                     </label>
@@ -124,19 +124,21 @@
                                 id="color-preview"
                                 class="w-16 h-12 rounded-lg border-2 border-gray-600 shadow-lg transition-all duration-200"
                                 style="background-color: {{ form.color.value|default:'#6b7280' }};"
+                                role="img"
+                                aria-label="Prévia da cor selecionada"
                             ></div>
                             <div>
                                 <p class="text-xs text-gray-400">Prévia</p>
-                                <p id="color-hex" class="text-sm font-mono text-gray-300">{{ form.color.value|default:'#6b7280' }}</p>
+                                <p id="color-hex" class="text-sm font-mono text-gray-300" aria-live="polite">{{ form.color.value|default:'#6b7280' }}</p>
                             </div>
                         </div>
                     </div>
 
                     {% if form.color.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.color.help_text }}</p>
+                    <p id="id_color_help" class="mt-2 text-xs text-gray-400">{{ form.color.help_text }}</p>
                     {% endif %}
                     {% if form.color.errors %}
-                    <div class="mt-2">
+                    <div id="id_color_error" role="alert" class="mt-2">
                         {% for error in form.color.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}

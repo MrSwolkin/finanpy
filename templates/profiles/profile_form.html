@@ -12,7 +12,7 @@
                     Editar Perfil
                 </span>
             </h1>
-            <p class="text-gray-400 text-sm md:text-base">
+            <p class="text-gray-300 text-sm md:text-base">
                 Atualize suas informações pessoais
             </p>
         </div>
@@ -45,7 +45,7 @@
                             {% if form.instance.avatar %}
                             <img
                                 src="{{ form.instance.avatar.url }}"
-                                alt="Avatar atual"
+                                alt="Foto de perfil atual de {{ form.instance.first_name }} {{ form.instance.last_name }}"
                                 class="w-24 h-24 rounded-full border-4 border-gray-700 object-cover shadow-lg"
                                 id="avatar-preview"
                             >
@@ -62,18 +62,15 @@
                         <div class="flex-1">
                             {{ form.avatar }}
                             {% if form.avatar.help_text %}
-                            <p class="mt-2 text-xs text-gray-400">{{ form.avatar.help_text }}</p>
+                            <p id="id_avatar_help" class="mt-2 text-xs text-gray-300">{{ form.avatar.help_text }}</p>
                             {% endif %}
                             {% if form.avatar.errors %}
-                            <div class="mt-2">
+                            <div id="id_avatar_error" role="alert" class="mt-2">
                                 {% for error in form.avatar.errors %}
                                 <p class="text-sm text-red-400">{{ error }}</p>
                                 {% endfor %}
                             </div>
                             {% endif %}
-                            <p class="mt-2 text-xs text-gray-400">
-                                Formatos aceitos: JPG, PNG. Tamanho máximo: 2MB
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -85,15 +82,15 @@
                         <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                             Primeiro Nome
                             {% if form.first_name.field.required %}
-                            <span class="text-red-400">*</span>
+                            <span class="text-red-400" aria-hidden="true">*</span>
                             {% endif %}
                         </label>
                         {{ form.first_name }}
                         {% if form.first_name.help_text %}
-                        <p class="mt-2 text-xs text-gray-400">{{ form.first_name.help_text }}</p>
+                        <p id="id_first_name_help" class="mt-2 text-xs text-gray-300">{{ form.first_name.help_text }}</p>
                         {% endif %}
                         {% if form.first_name.errors %}
-                        <div class="mt-2">
+                        <div id="id_first_name_error" role="alert" class="mt-2">
                             {% for error in form.first_name.errors %}
                             <p class="text-sm text-red-400">{{ error }}</p>
                             {% endfor %}
@@ -106,15 +103,15 @@
                         <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                             Sobrenome
                             {% if form.last_name.field.required %}
-                            <span class="text-red-400">*</span>
+                            <span class="text-red-400" aria-hidden="true">*</span>
                             {% endif %}
                         </label>
                         {{ form.last_name }}
                         {% if form.last_name.help_text %}
-                        <p class="mt-2 text-xs text-gray-400">{{ form.last_name.help_text }}</p>
+                        <p id="id_last_name_help" class="mt-2 text-xs text-gray-300">{{ form.last_name.help_text }}</p>
                         {% endif %}
                         {% if form.last_name.errors %}
-                        <div class="mt-2">
+                        <div id="id_last_name_error" role="alert" class="mt-2">
                             {% for error in form.last_name.errors %}
                             <p class="text-sm text-red-400">{{ error }}</p>
                             {% endfor %}
@@ -128,15 +125,15 @@
                     <label for="{{ form.phone.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Telefone
                         {% if form.phone.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.phone }}
                     {% if form.phone.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.phone.help_text }}</p>
+                    <p id="id_phone_help" class="mt-2 text-xs text-gray-300">{{ form.phone.help_text }}</p>
                     {% endif %}
                     {% if form.phone.errors %}
-                    <div class="mt-2">
+                    <div id="id_phone_error" role="alert" class="mt-2">
                         {% for error in form.phone.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}

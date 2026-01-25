@@ -12,13 +12,13 @@
                     Dashboard
                 </span>
             </h1>
-            <p class="text-gray-400 text-sm md:text-base">
+            <p class="text-gray-300 text-sm md:text-base">
                 Visão geral das suas finanças
             </p>
         </div>
 
         <!-- Period Selector -->
-        <div class="mb-6">
+        <div class="mb-6" role="region" aria-label="Seletor de período">
             <form method="get" action="{% url 'dashboard' %}" class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
                 <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
                     <div class="flex-1 w-full sm:w-auto">
@@ -80,12 +80,12 @@
         </div>
 
         <!-- Metrics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" role="region" aria-label="Métricas financeiras">
             <!-- Total Balance Card (GRADIENT CARD) -->
             <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-2">
                     <h3 class="text-white/80 text-sm font-medium">Saldo Total</h3>
-                    <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                 </div>
@@ -99,49 +99,49 @@
             <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-2">
                     <h3 class="text-gray-300 text-sm font-medium">Receitas do Período</h3>
-                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                     </svg>
                 </div>
                 <p class="text-3xl font-bold text-green-400 mb-1">
                     R$ {{ period_income|floatformat:2 }}
                 </p>
-                <p class="text-gray-500 text-xs">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
+                <p class="text-gray-400 text-xs">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
             </div>
 
             <!-- Period Expenses Card -->
             <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-2">
                     <h3 class="text-gray-300 text-sm font-medium">Despesas do Período</h3>
-                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
                     </svg>
                 </div>
                 <p class="text-3xl font-bold text-red-400 mb-1">
                     R$ {{ period_expenses|floatformat:2 }}
                 </p>
-                <p class="text-gray-500 text-xs">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
+                <p class="text-gray-400 text-xs">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
             </div>
 
             <!-- Period Balance Card -->
             <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between mb-2">
                     <h3 class="text-gray-300 text-sm font-medium">Saldo do Período</h3>
-                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
                 </div>
                 <p class="text-3xl font-bold {% if period_balance >= 0 %}text-blue-400{% else %}text-red-400{% endif %} mb-1">
                     R$ {{ period_balance|floatformat:2 }}
                 </p>
-                <p class="text-gray-500 text-xs">Receitas - Despesas</p>
+                <p class="text-gray-400 text-xs">Receitas - Despesas</p>
             </div>
         </div>
 
         <!-- Recent Transactions and Category Summary -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Recent Transactions -->
-            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6" role="region" aria-label="Transações recentes">
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-xl font-bold text-gray-100">Transações Recentes</h2>
                     <a
@@ -159,14 +159,14 @@
                             <div class="flex items-center space-x-4 flex-1 min-w-0">
                                 <div class="flex-shrink-0">
                                     {% if transaction.transaction_type == 'income' %}
-                                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
-                                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center" aria-label="Receita">
+                                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                                             </svg>
                                         </div>
                                     {% else %}
-                                        <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
-                                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center" aria-label="Despesa">
+                                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
                                             </svg>
                                         </div>
@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-gray-100 font-medium truncate">{{ transaction.description }}</p>
-                                    <div class="flex items-center space-x-2 text-sm text-gray-400">
+                                    <div class="flex items-center space-x-2 text-sm text-gray-300">
                                         <span>{{ transaction.category.name }}</span>
                                         <span>•</span>
                                         <span>{{ transaction.transaction_date|date:'d/m/Y' }}</span>
@@ -192,15 +192,15 @@
                     </div>
                 {% else %}
                     <div class="text-center py-12">
-                        <svg class="w-16 h-16 text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
-                        <p class="text-gray-400 mb-4">Nenhuma transação registrada</p>
+                        <p class="text-gray-300 mb-4">Nenhuma transação registrada</p>
                         <a
                             href="{% url 'transactions:create' %}"
                             class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
                         >
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                             </svg>
                             Nova Transação
@@ -210,10 +210,10 @@
             </div>
 
             <!-- Category Summary -->
-            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6">
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg p-6" role="region" aria-label="Resumo de categorias">
                 <div class="mb-6">
                     <h2 class="text-xl font-bold text-gray-100">Top Categorias de Despesas</h2>
-                    <p class="text-sm text-gray-400 mt-1">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
+                    <p class="text-sm text-gray-300 mt-1">{{ date_from|date:'d/m/Y' }} - {{ date_to|date:'d/m/Y' }}</p>
                 </div>
 
                 {% if category_summary %}
@@ -231,7 +231,7 @@
                                 <span class="text-red-400 font-bold">R$ {{ category.total|floatformat:2 }}</span>
                             </div>
                             <!-- Progress bar -->
-                            <div class="w-full bg-gray-700 rounded-full h-2">
+                            <div class="w-full bg-gray-700 rounded-full h-2" role="progressbar" aria-valuenow="{% widthratio category.total period_expenses 100 %}" aria-valuemin="0" aria-valuemax="100" aria-label="Categoria {{ category.category__name }}: {% widthratio category.total period_expenses 100 %}%">
                                 <div
                                     class="h-2 rounded-full transition-all"
                                     style="width: {% widthratio category.total period_expenses 100 %}%; background-color: {{ category.category__color }};"
@@ -242,10 +242,10 @@
                     </div>
                 {% else %}
                     <div class="text-center py-12">
-                        <svg class="w-16 h-16 text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
-                        <p class="text-gray-400">Nenhuma despesa no período selecionado</p>
+                        <p class="text-gray-300">Nenhuma despesa no período selecionado</p>
                     </div>
                 {% endif %}
             </div>

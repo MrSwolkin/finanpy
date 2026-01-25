@@ -907,21 +907,21 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Instruções contextuais
 
 #### Tarefa 43: Acessibilidade
-- [ ] 43.1 - Adicionar labels adequados
+- [X] 43.1 - Adicionar labels adequados
   - Todos os inputs com label
   - For/id corretos
-- [ ] 43.2 - ARIA labels onde necessário
+- [X] 43.2 - ARIA labels onde necessário
   - Botões sem texto
   - Ícones
   - Navegação
-- [ ] 43.3 - Contraste de cores
+- [X] 43.3 - Contraste de cores
   - Verificar WCAG AA
   - Ajustar se necessário
-- [ ] 43.4 - Navegação por teclado
+- [X] 43.4 - Navegação por teclado
   - Tab order lógico
   - Focus visível
   - Atalhos (futuro)
-- [ ] 43.5 - Textos alternativos
+- [X] 43.5 - Textos alternativos
   - Alt em imagens
   - Title em links/botões
 

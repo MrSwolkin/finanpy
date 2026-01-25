@@ -47,15 +47,15 @@
                     <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Nome da Conta
                         {% if form.name.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.name }}
                     {% if form.name.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.name.help_text }}</p>
+                    <p id="id_name_help" class="mt-2 text-xs text-gray-400">{{ form.name.help_text }}</p>
                     {% endif %}
                     {% if form.name.errors %}
-                    <div class="mt-2">
+                    <div id="id_name_error" role="alert" class="mt-2">
                         {% for error in form.name.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -68,16 +68,16 @@
                     <label for="{{ form.account_type.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Tipo de Conta
                         {% if form.account_type.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                         {% include "components/tooltip.html" with text="Escolha o tipo de conta que melhor representa sua conta bancária." %}
                     </label>
                     {{ form.account_type }}
                     {% if form.account_type.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.account_type.help_text }}</p>
+                    <p id="id_account_type_help" class="mt-2 text-xs text-gray-400">{{ form.account_type.help_text }}</p>
                     {% endif %}
                     {% if form.account_type.errors %}
-                    <div class="mt-2">
+                    <div id="id_account_type_error" role="alert" class="mt-2">
                         {% for error in form.account_type.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -91,16 +91,16 @@
                     <label for="{{ form.initial_balance.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Saldo Inicial
                         {% if form.initial_balance.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                         {% include "components/tooltip.html" with text="Saldo inicial da conta. Pode ser negativo se você já tiver dívidas." %}
                     </label>
                     {{ form.initial_balance }}
                     {% if form.initial_balance.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.initial_balance.help_text }}</p>
+                    <p id="id_initial_balance_help" class="mt-2 text-xs text-gray-400">{{ form.initial_balance.help_text }}</p>
                     {% endif %}
                     {% if form.initial_balance.errors %}
-                    <div class="mt-2">
+                    <div id="id_initial_balance_error" role="alert" class="mt-2">
                         {% for error in form.initial_balance.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}

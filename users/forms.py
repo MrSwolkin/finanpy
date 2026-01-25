@@ -20,7 +20,9 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder': 'seu@email.com',
             'data-validate': 'true',
             'data-required': 'true',
-            'data-email': 'true'
+            'data-email': 'true',
+            'aria-describedby': 'id_email_help',
+            'aria-required': 'true'
         })
     )
 
@@ -32,7 +34,9 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder': '••••••••',
             'data-validate': 'true',
             'data-required': 'true',
-            'data-min-length': '8'
+            'data-min-length': '8',
+            'aria-describedby': 'id_password1_help',
+            'aria-required': 'true'
         })
     )
 
@@ -44,7 +48,9 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder': '••••••••',
             'data-validate': 'true',
             'data-required': 'true',
-            'data-match': 'id_password1'
+            'data-match': 'id_password1',
+            'aria-describedby': 'id_password2_help',
+            'aria-required': 'true'
         })
     )
 

@@ -12,13 +12,57 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
 
     {% tailwind_css %}
+
+    <!-- Accessibility Styles -->
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .sr-only-focusable:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #9333ea;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+
     {% block extra_css %}{% endblock %}
 </head>
 <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="skip-link sr-only-focusable">
+        Pular para o conteúdo principal
+    </a>
+
     {% include "partials/navbar.html" %}
     {% include "partials/messages.html" %}
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
         {% block content %}{% endblock %}
     </main>
 
@@ -36,11 +80,17 @@
     <!-- Form Validation Module -->
     <script src="{% static 'js/validation.js' %}"></script>
 
+    <!-- Form Accessibility Module -->
+    <script src="{% static 'js/form-accessibility.js' %}"></script>
+
     <!-- Navbar Module -->
     <script src="{% static 'js/navbar.js' %}"></script>
 
     <!-- Tooltips Module -->
     <script src="{% static 'js/tooltips.js' %}"></script>
+
+    <!-- Tooltip Accessibility Enhancement -->
+    <script src="{% static 'js/tooltip-accessibility.js' %}"></script>
 
     {% block extra_js %}{% endblock %}
 </body>

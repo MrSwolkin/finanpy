@@ -47,15 +47,15 @@
                     <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Descrição
                         {% if form.description.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.description }}
                     {% if form.description.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.description.help_text }}</p>
+                    <p id="id_description_help" class="mt-2 text-xs text-gray-400">{{ form.description.help_text }}</p>
                     {% endif %}
                     {% if form.description.errors %}
-                    <div class="mt-2">
+                    <div id="id_description_error" role="alert" class="mt-2">
                         {% for error in form.description.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -68,7 +68,7 @@
                     <label for="{{ form.amount.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Valor
                         {% if form.amount.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                         {% include "components/tooltip.html" with text="Digite o valor da transação. Use ponto ou vírgula para decimais." %}
                     </label>
@@ -83,17 +83,18 @@
                             placeholder="0,00"
                             step="0.01"
                             min="0.01"
-                            {% if form.amount.field.required %}required{% endif %}
+                            {% if form.amount.field.required %}required aria-required="true"{% endif %}
+                            {% if form.amount.errors %}aria-invalid="true" aria-describedby="id_amount_help id_amount_error"{% else %}aria-invalid="false" aria-describedby="id_amount_help"{% endif %}
                             data-validate="true"
                             data-required="true"
                             data-positive="true"
                         >
                     </div>
                     {% if form.amount.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.amount.help_text }}</p>
+                    <p id="id_amount_help" class="mt-2 text-xs text-gray-400">{{ form.amount.help_text }}</p>
                     {% endif %}
                     {% if form.amount.errors %}
-                    <div class="mt-2">
+                    <div id="id_amount_error" role="alert" class="mt-2">
                         {% for error in form.amount.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -106,15 +107,15 @@
                     <label for="{{ form.transaction_date.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Data da Transação
                         {% if form.transaction_date.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.transaction_date }}
                     {% if form.transaction_date.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.transaction_date.help_text }}</p>
+                    <p id="id_transaction_date_help" class="mt-2 text-xs text-gray-400">{{ form.transaction_date.help_text }}</p>
                     {% endif %}
                     {% if form.transaction_date.errors %}
-                    <div class="mt-2">
+                    <div id="id_transaction_date_error" role="alert" class="mt-2">
                         {% for error in form.transaction_date.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -127,15 +128,15 @@
                     <label for="{{ form.transaction_type.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Tipo
                         {% if form.transaction_type.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.transaction_type }}
                     {% if form.transaction_type.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.transaction_type.help_text }}</p>
+                    <p id="id_transaction_type_help" class="mt-2 text-xs text-gray-400">{{ form.transaction_type.help_text }}</p>
                     {% endif %}
                     {% if form.transaction_type.errors %}
-                    <div class="mt-2">
+                    <div id="id_transaction_type_error" role="alert" class="mt-2">
                         {% for error in form.transaction_type.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -148,7 +149,7 @@
                     <label for="{{ form.category.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Categoria
                         {% if form.category.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                         {% include "components/tooltip.html" with text="A categoria será filtrada automaticamente pelo tipo de transação." %}
                     </label>
@@ -156,7 +157,8 @@
                         name="{{ form.category.name }}"
                         id="{{ form.category.id_for_label }}"
                         class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                        {% if form.category.field.required %}required{% endif %}
+                        {% if form.category.field.required %}required aria-required="true"{% endif %}
+                        {% if form.category.errors %}aria-invalid="true" aria-describedby="id_category_help id_category_error"{% else %}aria-invalid="false" aria-describedby="id_category_help"{% endif %}
                     >
                         <option value="">Selecione uma categoria</option>
                         {% for category_pk, category_name, category_type in form._category_choices_with_type %}
@@ -170,10 +172,10 @@
                         {% endfor %}
                     </select>
                     {% if form.category.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.category.help_text }}</p>
+                    <p id="id_category_help" class="mt-2 text-xs text-gray-400">{{ form.category.help_text }}</p>
                     {% endif %}
                     {% if form.category.errors %}
-                    <div class="mt-2">
+                    <div id="id_category_error" role="alert" class="mt-2">
                         {% for error in form.category.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -186,15 +188,15 @@
                     <label for="{{ form.account.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         Conta
                         {% if form.account.field.required %}
-                        <span class="text-red-400">*</span>
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% endif %}
                     </label>
                     {{ form.account }}
                     {% if form.account.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.account.help_text }}</p>
+                    <p id="id_account_help" class="mt-2 text-xs text-gray-400">{{ form.account.help_text }}</p>
                     {% endif %}
                     {% if form.account.errors %}
-                    <div class="mt-2">
+                    <div id="id_account_error" role="alert" class="mt-2">
                         {% for error in form.account.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}

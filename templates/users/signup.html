@@ -12,7 +12,7 @@
                     Finanpy
                 </span>
             </h1>
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-300 text-sm">
                 Gerencie suas finanças de forma simples e eficiente
             </p>
         </div>
@@ -42,13 +42,14 @@
                 <div>
                     <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         {{ form.email.label }}
+                        <span class="text-red-400" aria-hidden="true">*</span>
                     </label>
                     {{ form.email }}
                     {% if form.email.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.email.help_text }}</p>
+                    <p id="id_email_help" class="mt-2 text-xs text-gray-300">{{ form.email.help_text }}</p>
                     {% endif %}
                     {% if form.email.errors %}
-                    <div class="mt-2">
+                    <div id="id_email_error" role="alert" class="mt-2">
                         {% for error in form.email.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -60,14 +61,15 @@
                 <div>
                     <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         {{ form.password1.label }}
+                        <span class="text-red-400" aria-hidden="true">*</span>
                         {% include "components/tooltip.html" with text="A senha deve ter no mínimo 8 caracteres." %}
                     </label>
                     {{ form.password1 }}
                     {% if form.password1.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.password1.help_text }}</p>
+                    <p id="id_password1_help" class="mt-2 text-xs text-gray-300">{{ form.password1.help_text }}</p>
                     {% endif %}
                     {% if form.password1.errors %}
-                    <div class="mt-2">
+                    <div id="id_password1_error" role="alert" class="mt-2">
                         {% for error in form.password1.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -79,13 +81,14 @@
                 <div>
                     <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-gray-300 mb-2">
                         {{ form.password2.label }}
+                        <span class="text-red-400" aria-hidden="true">*</span>
                     </label>
                     {{ form.password2 }}
                     {% if form.password2.help_text %}
-                    <p class="mt-2 text-xs text-gray-400">{{ form.password2.help_text }}</p>
+                    <p id="id_password2_help" class="mt-2 text-xs text-gray-300">{{ form.password2.help_text }}</p>
                     {% endif %}
                     {% if form.password2.errors %}
-                    <div class="mt-2">
+                    <div id="id_password2_error" role="alert" class="mt-2">
                         {% for error in form.password2.errors %}
                         <p class="text-sm text-red-400">{{ error }}</p>
                         {% endfor %}
@@ -104,7 +107,7 @@
 
         <!-- Login Link -->
         <div class="mt-6 text-center">
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-300 text-sm">
                 Já tem uma conta?
                 <a href="{% url 'users:login' %}" class="text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-200">
                     Entrar
@@ -113,4 +116,41 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Add aria-invalid attribute based on errors
+document.addEventListener('DOMContentLoaded', function() {
+    // Email field
+    var emailField = document.getElementById('id_email');
+    if (emailField) {
+        var hasErrors = document.getElementById('id_email_error') !== null;
+        emailField.setAttribute('aria-invalid', hasErrors ? 'true' : 'false');
+        if (hasErrors) {
+            emailField.setAttribute('aria-describedby', 'id_email_help id_email_error');
+        }
+    }
+
+    // Password1 field
+    var password1Field = document.getElementById('id_password1');
+    if (password1Field) {
+        var hasErrors = document.getElementById('id_password1_error') !== null;
+        password1Field.setAttribute('aria-invalid', hasErrors ? 'true' : 'false');
+        if (hasErrors) {
+            password1Field.setAttribute('aria-describedby', 'id_password1_help id_password1_error');
+        }
+    }
+
+    // Password2 field
+    var password2Field = document.getElementById('id_password2');
+    if (password2Field) {
+        var hasErrors = document.getElementById('id_password2_error') !== null;
+        password2Field.setAttribute('aria-invalid', hasErrors ? 'true' : 'false');
+        if (hasErrors) {
+            password2Field.setAttribute('aria-describedby', 'id_password2_help id_password2_error');
+        }
+    }
+});
+</script>
 {% endblock %}

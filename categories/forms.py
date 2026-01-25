@@ -42,14 +42,20 @@ class CategoryForm(forms.ModelForm):
                 'placeholder': 'Ex: Salário, Alimentação, Transporte',
                 'data-validate': 'true',
                 'data-required': 'true',
+                'aria-describedby': 'id_name_help',
+                'aria-required': 'true'
             }),
             'category_type': forms.Select(attrs={
                 'class': 'w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
+                'aria-describedby': 'id_category_type_help',
+                'aria-required': 'true'
             }),
             'color': forms.TextInput(attrs={
                 'type': 'color',
                 'class': 'w-full h-12 px-2 py-1 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200',
                 'value': '#6b7280',
+                'aria-describedby': 'id_color_help',
+                'aria-required': 'true'
             }),
         }
 
