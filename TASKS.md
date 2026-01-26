@@ -967,17 +967,17 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
 ### Sprint 10 - Refinamentos Finais (Semana 12)
 
 #### Tarefa 46: Formatação de Valores
-- [ ] 46.1 - Criar template filter para moeda
+- [X] 46.1 - Criar template filter para moeda
   - templatetags/currency_filters.py
   - Formato: R$ 1.234,56
-- [ ] 46.2 - Aplicar em todos os valores
+- [X] 46.2 - Aplicar em todos os valores
   - Dashboard
   - Listas de transações
   - Contas
-- [ ] 46.3 - Formatar datas
+- [X] 46.3 - Formatar datas
   - Formato brasileiro: dd/mm/yyyy
   - Templates filters
-- [ ] 46.4 - Formatar números grandes
+- [X] 46.4 - Formatar números grandes
   - Separador de milhares
   - Casas decimais consistentes
 

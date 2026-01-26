@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load currency_filters %}
 
 {% block title %}Minhas Transações - Finanpy{% endblock %}
 
@@ -109,7 +110,7 @@
                     <div>
                         <p class="text-gray-300 text-sm mb-1">Total de Receitas</p>
                         <h3 class="text-2xl md:text-3xl font-bold text-green-400">
-                            R$ {{ total_income|floatformat:2 }}
+                            {{ total_income|currency }}
                         </h3>
                     </div>
                     <div class="bg-green-500/10 p-3 rounded-lg">
@@ -126,7 +127,7 @@
                     <div>
                         <p class="text-gray-300 text-sm mb-1">Total de Despesas</p>
                         <h3 class="text-2xl md:text-3xl font-bold text-red-400">
-                            R$ {{ total_expense|floatformat:2 }}
+                            {{ total_expense|currency }}
                         </h3>
                     </div>
                     <div class="bg-red-500/10 p-3 rounded-lg">
@@ -143,7 +144,7 @@
                     <div>
                         <p class="text-gray-300 text-sm mb-1">Saldo</p>
                         <h3 class="text-2xl md:text-3xl font-bold {% if balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
-                            R$ {{ balance|floatformat:2 }}
+                            {{ balance|currency }}
                         </h3>
                     </div>
                     <div class="{% if balance >= 0 %}bg-gradient-to-r from-purple-600 to-blue-600{% else %}bg-red-500/10{% endif %} p-3 rounded-lg">
@@ -185,7 +186,7 @@
                     {% for transaction in transactions %}
                     <tr class="hover:bg-gray-700/30 transition-colors duration-150">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                            {{ transaction.transaction_date|date:"d/m/Y" }}
+                            {{ transaction.transaction_date|date_br }}
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-100">
                             <div class="max-w-xs truncate">
@@ -207,7 +208,7 @@
                             {{ transaction.account.name }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold {% if transaction.transaction_type == 'income' %}text-green-400{% else %}text-red-400{% endif %}">
-                            {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %} R$ {{ transaction.amount|floatformat:2 }}
+                            {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %} {{ transaction.amount|currency }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm">
                             <div class="flex items-center justify-center gap-2">
@@ -261,7 +262,7 @@
                         {% endif %}
                         <div>
                             <p class="text-xs text-gray-400 mb-1">
-                                {{ transaction.transaction_date|date:"d/m/Y" }}
+                                {{ transaction.transaction_date|date_br }}
                             </p>
                             <h3 class="text-base font-semibold text-white">
                                 {{ transaction.description }}
@@ -270,7 +271,7 @@
                     </div>
                     <div class="text-right">
                         <p class="text-lg font-bold {% if transaction.transaction_type == 'income' %}text-green-400{% else %}text-red-400{% endif %}">
-                            {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %} R$ {{ transaction.amount|floatformat:2 }}
+                            {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %} {{ transaction.amount|currency }}
                         </p>
                     </div>
                 </div>

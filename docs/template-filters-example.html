@@ -1,0 +1,347 @@
+<!--
+  EXAMPLE: How to use currency_filters in templates
+
+  This is an example showing how to replace floatformat with currency filters
+  in the transaction_list.html template
+-->
+
+{% extends 'base/base.html' %}
+{% load currency_filters %}  <!-- ADD THIS LINE -->
+
+{% block content %}
+
+<!-- BEFORE: Using floatformat -->
+<div class="old-way">
+    <p>Total: R$ {{ total_income|floatformat:2 }}</p>
+    <!-- Output: R$ 1234.56 (without thousands separator) -->
+</div>
+
+<!-- AFTER: Using currency filter -->
+<div class="new-way">
+    <p>Total: {{ total_income|currency }}</p>
+    <!-- Output: R$ 1.234,56 (with proper Brazilian formatting) -->
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 1: Summary Cards with Currency -->
+<!-- ============================================ -->
+
+<!-- Income Card -->
+<div class="stat-card">
+    <p class="label">Total de Receitas</p>
+    <h3 class="value text-green-400">
+        {{ total_income|currency }}
+    </h3>
+</div>
+
+<!-- Expense Card -->
+<div class="stat-card">
+    <p class="label">Total de Despesas</p>
+    <h3 class="value text-red-400">
+        {{ total_expenses|currency_abs }}  <!-- Use currency_abs to always show positive -->
+    </h3>
+</div>
+
+<!-- Balance Card -->
+<div class="stat-card">
+    <p class="label">Saldo</p>
+    <h3 class="value {% if balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+        {{ balance|currency }}
+    </h3>
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 2: Transaction List with Date & Currency -->
+<!-- ============================================ -->
+
+<table class="transaction-table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <!-- Date in Brazilian format -->
+            <td>{{ transaction.transaction_date|date_br }}</td>
+
+            <td>{{ transaction.description }}</td>
+
+            <!-- Amount with proper currency formatting -->
+            <td class="{% if transaction.transaction_type == 'income' %}text-green-400{% else %}text-red-400{% endif %}">
+                {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %}
+                {{ transaction.amount|currency_abs }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 3: Account Card with Multiple Formats -->
+<!-- ============================================ -->
+
+<div class="account-card">
+    <h3>{{ account.name }}</h3>
+
+    <!-- Current Balance -->
+    <div class="balance">
+        <span class="label">Saldo Atual:</span>
+        <span class="value">{{ account.balance|currency }}</span>
+    </div>
+
+    <!-- Account Number with custom formatting -->
+    <div class="info">
+        <span class="label">Número:</span>
+        <span class="value">{{ account.account_number|number_format:0 }}</span>
+    </div>
+
+    <!-- Last Updated -->
+    <div class="info">
+        <span class="label">Atualizado:</span>
+        <span class="value">{{ account.updated_at|datetime_br }}</span>
+    </div>
+
+    <!-- Created Date -->
+    <div class="info">
+        <span class="label">Criado em:</span>
+        <span class="value">{{ account.created_at|date_br }}</span>
+    </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 4: Dashboard Statistics with Percentages -->
+<!-- ============================================ -->
+
+<div class="dashboard-stats">
+    <!-- Total Income -->
+    <div class="stat">
+        <p>Receitas do Mês</p>
+        <h3>{{ monthly_income|currency }}</h3>
+    </div>
+
+    <!-- Total Expenses -->
+    <div class="stat">
+        <p>Despesas do Mês</p>
+        <h3>{{ monthly_expenses|currency_abs }}</h3>
+    </div>
+
+    <!-- Savings Rate -->
+    <div class="stat">
+        <p>Taxa de Poupança</p>
+        <h3>{{ savings_rate|percentage:1 }}</h3>
+    </div>
+
+    <!-- Growth Rate -->
+    <div class="stat">
+        <p>Crescimento</p>
+        <h3>{{ growth_rate|percentage:2 }}</h3>
+    </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 5: Category Report with Custom Decimal Places -->
+<!-- ============================================ -->
+
+<table class="category-report">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Total</th>
+            <th>% do Orçamento</th>
+            <th>Transações</th>
+            <th>Média por Transação</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.name }}</td>
+
+            <!-- Total amount -->
+            <td>{{ category.total|currency }}</td>
+
+            <!-- Percentage of budget -->
+            <td>{{ category.budget_percentage|percentage:1 }}</td>
+
+            <!-- Transaction count (no decimals) -->
+            <td>{{ category.transaction_count|number_format:0 }}</td>
+
+            <!-- Average per transaction (3 decimal places) -->
+            <td>{{ category.average|currency }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 6: Mobile Transaction Card -->
+<!-- ============================================ -->
+
+<div class="transaction-card-mobile">
+    <!-- Header with date and type indicator -->
+    <div class="header">
+        <div class="icon {% if transaction.transaction_type == 'income' %}bg-green-500/10{% else %}bg-red-500/10{% endif %}">
+            <!-- Icon here -->
+        </div>
+        <div class="info">
+            <p class="date">{{ transaction.transaction_date|date_br }}</p>
+            <h3 class="description">{{ transaction.description }}</h3>
+        </div>
+    </div>
+
+    <!-- Amount -->
+    <div class="amount">
+        <p class="{% if transaction.transaction_type == 'income' %}text-green-400{% else %}text-red-400{% endif %}">
+            {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %}
+            {{ transaction.amount|currency_abs }}
+        </p>
+    </div>
+
+    <!-- Created timestamp -->
+    <div class="timestamp">
+        <small class="text-gray-400">
+            Criado em: {{ transaction.created_at|datetime_br }}
+        </small>
+    </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 7: Investment Report with Various Formats -->
+<!-- ============================================ -->
+
+<div class="investment-report">
+    <div class="report-row">
+        <span class="label">Valor Investido:</span>
+        <span class="value">{{ invested_amount|currency }}</span>
+    </div>
+
+    <div class="report-row">
+        <span class="label">Valor Atual:</span>
+        <span class="value">{{ current_value|currency }}</span>
+    </div>
+
+    <div class="report-row">
+        <span class="label">Lucro/Prejuízo:</span>
+        <span class="value {% if profit >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+            {{ profit|currency }}
+        </span>
+    </div>
+
+    <div class="report-row">
+        <span class="label">Rendimento:</span>
+        <span class="value {% if return_rate >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+            {{ return_rate|percentage:2 }}
+        </span>
+    </div>
+
+    <div class="report-row">
+        <span class="label">Quantidade de Ações:</span>
+        <span class="value">{{ shares_quantity|number_format:0 }}</span>
+    </div>
+
+    <div class="report-row">
+        <span class="label">Preço Médio:</span>
+        <span class="value">{{ average_price|currency }}</span>
+    </div>
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 8: Filter Chaining (combining multiple filters) -->
+<!-- ============================================ -->
+
+<!-- This doesn't work - currency already formats the number -->
+<!-- WRONG: {{ amount|currency|floatformat:2 }} -->
+
+<!-- This is correct - use currency alone -->
+<!-- CORRECT: {{ amount|currency }} -->
+
+<!-- For custom decimal places, use number_format then add R$ in template -->
+<div class="custom-format">
+    <span>R$ {{ amount|number_format:3 }}</span>
+    <!-- Output: R$ 1.234,567 -->
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 9: Handling None/Empty Values -->
+<!-- ============================================ -->
+
+<div class="safe-display">
+    <!-- These all return safe defaults -->
+    {{ none_value|currency }}           <!-- Output: R$ 0,00 -->
+    {{ empty_string|currency }}         <!-- Output: R$ 0,00 -->
+    {{ null_date|date_br }}            <!-- Output: (empty string) -->
+    {{ null_datetime|datetime_br }}    <!-- Output: (empty string) -->
+    {{ none_number|number_format:2 }}  <!-- Output: 0 -->
+    {{ none_percent|percentage:1 }}    <!-- Output: 0% -->
+</div>
+
+
+<!-- ============================================ -->
+<!-- EXAMPLE 10: Complete Transaction List Template Replacement -->
+<!-- ============================================ -->
+
+<!-- REPLACE lines 112-113 in transaction_list.html -->
+<!-- OLD: -->
+<!-- <h3 class="text-2xl md:text-3xl font-bold text-green-400">
+    R$ {{ total_income|floatformat:2 }}
+</h3> -->
+
+<!-- NEW: -->
+<h3 class="text-2xl md:text-3xl font-bold text-green-400">
+    {{ total_income|currency }}
+</h3>
+
+
+<!-- REPLACE lines 129-130 in transaction_list.html -->
+<!-- OLD: -->
+<!-- <h3 class="text-2xl md:text-3xl font-bold text-red-400">
+    R$ {{ total_expense|floatformat:2 }}
+</h3> -->
+
+<!-- NEW: -->
+<h3 class="text-2xl md:text-3xl font-bold text-red-400">
+    {{ total_expense|currency_abs }}
+</h3>
+
+
+<!-- REPLACE lines 145-147 in transaction_list.html -->
+<!-- OLD: -->
+<!-- <h3 class="text-2xl md:text-3xl font-bold {% if balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+    R$ {{ balance|floatformat:2 }}
+</h3> -->
+
+<!-- NEW: -->
+<h3 class="text-2xl md:text-3xl font-bold {% if balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
+    {{ balance|currency }}
+</h3>
+
+
+<!-- REPLACE line 188 in transaction_list.html -->
+<!-- OLD: -->
+<!-- {{ transaction.transaction_date|date:"d/m/Y" }} -->
+
+<!-- NEW: -->
+{{ transaction.transaction_date|date_br }}
+
+
+<!-- REPLACE line 210 in transaction_list.html -->
+<!-- OLD: -->
+<!-- {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %} R$ {{ transaction.amount|floatformat:2 }} -->
+
+<!-- NEW: -->
+{% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %} {{ transaction.amount|currency_abs }}
+
+{% endblock %}

@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load currency_filters %}
 
 {% block title %}Minhas Contas - Finanpy{% endblock %}
 
@@ -41,7 +42,7 @@
                         Saldo Total
                     </p>
                     <h2 class="text-3xl md:text-4xl font-bold text-white">
-                        R$ {{ total_balance|floatformat:2 }}
+                        {{ total_balance|currency }}
                     </h2>
                 </div>
                 <div class="flex items-center">
@@ -89,7 +90,7 @@
                     <div class="mb-6">
                         <p class="text-sm text-gray-300 mb-1">Saldo Atual</p>
                         <p class="text-2xl font-bold {% if account.current_balance >= 0 %}text-green-400{% else %}text-red-400{% endif %}">
-                            R$ {{ account.current_balance|floatformat:2 }}
+                            {{ account.current_balance|currency }}
                         </p>
                     </div>
 
@@ -189,8 +190,8 @@
                 <!-- Footer Info -->
                 <div class="px-6 py-3 bg-gray-800/30 border-t border-gray-700">
                     <div class="flex items-center justify-between text-xs text-gray-400">
-                        <span>Criada em {{ account.created_at|date:"d/m/Y" }}</span>
-                        <span>Atualizada {{ account.updated_at|date:"d/m/Y" }}</span>
+                        <span>Criada em {{ account.created_at|date_br }}</span>
+                        <span>Atualizada {{ account.updated_at|date_br }}</span>
                     </div>
                 </div>
             </div>

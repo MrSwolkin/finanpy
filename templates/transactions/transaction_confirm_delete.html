@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load currency_filters %}
 
 {% block title %}Excluir Transação - Finanpy{% endblock %}
 
@@ -52,7 +53,7 @@
                     <div class="flex items-center justify-between py-3 border-b border-gray-700">
                         <span class="text-sm text-gray-400">Valor</span>
                         <span class="text-lg font-bold {% if object.transaction_type == 'income' %}text-green-400{% else %}text-red-400{% endif %}">
-                            R$ {{ object.amount|floatformat:2 }}
+                            {{ object.amount|currency }}
                         </span>
                     </div>
 
@@ -60,7 +61,7 @@
                     <div class="flex items-center justify-between py-3 border-b border-gray-700">
                         <span class="text-sm text-gray-400">Data</span>
                         <span class="text-base font-medium text-gray-100">
-                            {{ object.transaction_date|date:"d/m/Y" }}
+                            {{ object.transaction_date|date_br }}
                         </span>
                     </div>
 
@@ -109,9 +110,9 @@
                     <h4 class="text-sm font-semibold text-yellow-400 mb-1">Impacto no Saldo</h4>
                     <p class="text-xs text-yellow-300">
                         {% if object.transaction_type == 'income' %}
-                        O saldo da conta <strong>{{ object.account.name }}</strong> será <strong>reduzido</strong> em R$ {{ object.amount|floatformat:2 }}.
+                        O saldo da conta <strong>{{ object.account.name }}</strong> será <strong>reduzido</strong> em {{ object.amount|currency }}.
                         {% else %}
-                        O saldo da conta <strong>{{ object.account.name }}</strong> será <strong>aumentado</strong> em R$ {{ object.amount|floatformat:2 }}.
+                        O saldo da conta <strong>{{ object.account.name }}</strong> será <strong>aumentado</strong> em {{ object.amount|currency }}.
                         {% endif %}
                     </p>
                 </div>
