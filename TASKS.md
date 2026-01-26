@@ -982,16 +982,16 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Casas decimais consistentes
 
 #### Tarefa 47: Validações Adicionais
-- [ ] 47.1 - Validar deleção de conta com transações
+- [X] 47.1 - Validar deleção de conta com transações
   - Prevenir ou oferecer migração
   - Mensagem clara
-- [ ] 47.2 - Validar deleção de categoria em uso
+- [X] 47.2 - Validar deleção de categoria em uso
   - Contar transações
   - Bloquear ou sugerir alternativa
-- [ ] 47.3 - Validar valores negativos
+- [X] 47.3 - Validar valores negativos
   - Apenas em campos apropriados
   - Mensagens contextuais
-- [ ] 47.4 - Validar datas futuras
+- [X] 47.4 - Validar datas futuras
   - Permitir ou não (decisão de negócio)
   - Feedback claro
 

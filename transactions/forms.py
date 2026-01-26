@@ -1,4 +1,5 @@
 from decimal import Decimal
+from datetime import date, timedelta
 from django import forms
 from .models import Transaction
 from accounts.models import Account
@@ -111,6 +112,9 @@ class TransactionForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
 
+        # Initialize warnings dictionary to store date-related warnings
+        self.warnings = {}
+
         if self.user:
             # Filter accounts: only active accounts belonging to the user
             self.fields['account'].queryset = Account.objects.filter(
@@ -146,7 +150,15 @@ class TransactionForm(forms.ModelForm):
     def clean_amount(self):
         """
         Custom validation for amount field.
-        Ensures the amount is positive (greater than 0).
+
+        IMPORTANT: Transaction amounts must ALWAYS be positive (greater than 0).
+        The transaction type (INCOME/EXPENSE) determines how the amount affects
+        the account balance, not the sign of the amount.
+
+        This is different from account balances, which can be negative.
+        For transactions, use:
+        - Positive amount + transaction_type=INCOME for deposits/income
+        - Positive amount + transaction_type=EXPENSE for withdrawals/expenses
         """
         amount = self.cleaned_data.get('amount')
 
@@ -156,10 +168,70 @@ class TransactionForm(forms.ModelForm):
         if amount <= Decimal('0'):
             raise forms.ValidationError(
                 'O valor deve ser maior que zero. '
-                'Informe apenas valores positivos.'
+                'Informe apenas valores positivos. '
+                'O tipo da transação (receita ou despesa) determina como o valor afeta o saldo.'
             )
 
         return amount
+
+    def clean_transaction_date(self):
+        """
+        Custom validation for transaction_date field.
+
+        Business logic:
+        - Allows future dates (for scheduled/planned transactions)
+        - Shows a WARNING (not error) for future dates
+        - Shows a stronger WARNING for dates more than 1 year in the future
+        - Validates that the date is not too far in the past (more than 10 years)
+
+        This supports use cases like:
+        - Scheduled bill payments
+        - Expected salary deposits
+        - Planned expenses
+        """
+        transaction_date = self.cleaned_data.get('transaction_date')
+
+        if transaction_date is None:
+            return transaction_date
+
+        today = date.today()
+
+        # Check if date is too far in the past (more than 10 years)
+        ten_years_ago = today - timedelta(days=365 * 10)
+        if transaction_date < ten_years_ago:
+            raise forms.ValidationError(
+                'A data da transação não pode ser anterior a 10 anos atrás. '
+                'Verifique se a data está correta.'
+            )
+
+        # Check if date is in the future
+        if transaction_date > today:
+            days_in_future = (transaction_date - today).days
+
+            # Strong warning for dates more than 1 year in the future
+            if days_in_future > 365:
+                years_ahead = days_in_future / 365
+                self.warnings['transaction_date'] = (
+                    f'Atenção: Esta data está {years_ahead:.1f} anos no futuro. '
+                    'Verifique se a data está correta. '
+                    'Transações futuras são úteis para planejamento, mas datas muito distantes podem ser erros de digitação.'
+                )
+            # Regular warning for future dates (up to 1 year)
+            else:
+                if days_in_future == 1:
+                    days_text = 'amanhã'
+                elif days_in_future <= 30:
+                    days_text = f'em {days_in_future} dias'
+                else:
+                    months = days_in_future // 30
+                    days_text = f'em aproximadamente {months} meses' if months > 1 else 'em aproximadamente 1 mês'
+
+                self.warnings['transaction_date'] = (
+                    f'Nota: Esta transação está agendada para o futuro ({days_text}). '
+                    'Ela será contabilizada no saldo, mas ainda não ocorreu.'
+                )
+
+        return transaction_date
 
     def clean_category(self):
         """

@@ -112,6 +112,8 @@ class AccountDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
     """
     Delete a bank account.
     Verifies that the user owns this account before allowing deletion.
+    WARNING: Deleting an account will CASCADE DELETE all associated transactions.
+    The view displays transaction count to warn users about the implications.
     """
     model = Account
     template_name = 'accounts/account_confirm_delete.html'
@@ -124,6 +126,16 @@ class AccountDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
         """
         account = self.get_object()
         return account.user == self.request.user
+
+    def get_context_data(self, **kwargs):
+        """
+        Add transaction count to context to warn users about cascade deletion.
+        Counts all transactions linked to this account.
+        """
+        context = super().get_context_data(**kwargs)
+        account = self.get_object()
+        context['transaction_count'] = account.transactions.count()
+        return context
 
     def delete(self, request, *args, **kwargs):
         """

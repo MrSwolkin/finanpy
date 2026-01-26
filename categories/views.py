@@ -158,6 +158,15 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
 
         return super().dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        """
+        Add transaction count to context for display in template.
+        """
+        context = super().get_context_data(**kwargs)
+        category = self.get_object()
+        context['transaction_count'] = category.transactions.count()
+        return context
+
     def delete(self, request, *args, **kwargs):
         """
         Override delete to check for linked transactions and add success message.
@@ -165,18 +174,16 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessage
         """
         category = self.get_object()
 
-        # TODO: When Transaction model exists, uncomment this validation
         # Check if category has linked transactions
-        # if category.transactions.exists():
-        #     messages.error(
-        #         request,
-        #         'Esta categoria não pode ser excluída pois possui transações vinculadas. '
-        #         'Exclua ou mova as transações primeiro.'
-        #     )
-        #     return redirect('categories:list')
-
-        # For now, just add a placeholder comment since Transaction model doesn't exist yet
-        # Future implementation will query: category.transactions.exists()
+        if category.transactions.exists():
+            transaction_count = category.transactions.count()
+            messages.error(
+                request,
+                f'Esta categoria não pode ser excluída pois possui {transaction_count} '
+                f'transaç{"ão" if transaction_count == 1 else "ões"} vinculada{"" if transaction_count == 1 else "s"}. '
+                'Reatribua ou exclua as transações primeiro.'
+            )
+            return redirect('categories:list')
 
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)

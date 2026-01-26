@@ -20,7 +20,7 @@ class AccountForm(forms.ModelForm):
         help_texts = {
             'name': 'Digite um nome descritivo para identificar sua conta',
             'account_type': 'Selecione o tipo de conta bancária',
-            'initial_balance': 'Informe o saldo inicial da conta (pode ser negativo)',
+            'initial_balance': 'Informe o saldo inicial da conta. Valores negativos são permitidos para contas com cheque especial ou saldo devedor.',
         }
         error_messages = {
             'name': {
@@ -74,7 +74,14 @@ class AccountForm(forms.ModelForm):
     def clean_initial_balance(self):
         """
         Custom validation for initial_balance field.
-        Allows negative values (overdraft/debt situations).
+
+        IMPORTANT: This field explicitly allows negative values to support real-world scenarios:
+        - Checking accounts with overdraft protection (cheque especial)
+        - Credit card accounts starting with debt
+        - Accounts with existing negative balance being added to the system
+
+        Unlike transaction amounts (which must always be positive), account balances
+        represent the current state and can be negative.
         """
         initial_balance = self.cleaned_data.get('initial_balance')
 
@@ -82,7 +89,8 @@ class AccountForm(forms.ModelForm):
             raise forms.ValidationError('O saldo inicial é obrigatório')
 
         # Explicitly allow negative values (no validation error for negative amounts)
-        # This allows users to start with debt/overdraft
+        # This allows users to start with debt/overdraft situations
+        # No minimum value check - negative balances are valid for accounts
 
         return initial_balance
 
