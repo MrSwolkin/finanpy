@@ -946,19 +946,19 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Imagens grandes (futuro)
 
 #### Tarefa 45: Responsividade
-- [ ] 45.1 - Testar em mobile (375px)
+- [X] 45.1 - Testar em mobile (375px)
   - Todos os templates
   - Ajustar breakpoints
-- [ ] 45.2 - Testar em tablet (768px)
+- [X] 45.2 - Testar em tablet (768px)
   - Layout intermediário
   - Navegação adequada
-- [ ] 45.3 - Testar em desktop (1024px+)
+- [X] 45.3 - Testar em desktop (1024px+)
   - Uso de espaço
   - Grid layouts
-- [ ] 45.4 - Testar em diferentes navegadores
+- [X] 45.4 - Testar em diferentes navegadores
   - Chrome, Firefox, Safari, Edge
   - Versões recentes
-- [ ] 45.5 - Ajustar problemas encontrados
+- [X] 45.5 - Ajustar problemas encontrados
   - CSS fixes
   - JavaScript compatibilidade
 
