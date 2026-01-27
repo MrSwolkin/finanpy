@@ -1016,23 +1016,23 @@ Durante o desenvolvimento, usar `python manage.py tailwind start` em um terminal
   - Forms customizados
 
 #### Tarefa 49: Deploy Preparation
-- [ ] 49.1 - Configurar variáveis de ambiente
+- [X] 49.1 - Configurar variáveis de ambiente
   - python-decouple
   - .env.example
   - SECRET_KEY, DEBUG, ALLOWED_HOSTS
-- [ ] 49.2 - Build de produção do Tailwind
+- [X] 49.2 - Build de produção do Tailwind
   - `python manage.py tailwind build`
   - CSS otimizado e minificado
-- [ ] 49.3 - Configurar arquivos estáticos para produção
+- [X] 49.3 - Configurar arquivos estáticos para produção
   - STATIC_ROOT
   - `python manage.py collectstatic`
-- [ ] 49.4 - Configurar HTTPS
+- [X] 49.4 - Configurar HTTPS
   - SECURE_SSL_REDIRECT
   - SESSION_COOKIE_SECURE
   - CSRF_COOKIE_SECURE
-- [ ] 49.5 - Configurar ALLOWED_HOSTS
+- [X] 49.5 - Configurar ALLOWED_HOSTS
   - Domínios permitidos
-- [ ] 49.6 - Criar requirements.txt
+- [X] 49.6 - Criar requirements.txt
   - Freeze dependencies
   - Versões específicas
 

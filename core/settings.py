@@ -164,3 +164,28 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Dev: mostra 
 # EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 DEFAULT_FROM_EMAIL = 'Finanpy <noreply@finanpy.com>'
+
+# =============================================================================
+# Security Settings (Production)
+# =============================================================================
+# These settings should be enabled in production for HTTPS
+
+# Redirect all HTTP requests to HTTPS
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+
+# Use secure cookies (only sent over HTTPS)
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=0, cast=int)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False, cast=bool)
+SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=False, cast=bool)
+
+# Content Security
+SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
+
+# Authentication URLs
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'landing'
