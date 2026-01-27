@@ -1,3 +1,9 @@
+"""
+Transaction forms for the Finanpy application.
+
+This module contains forms for creating, editing, and filtering financial transactions
+with comprehensive validation, date warnings, and dynamic category filtering.
+"""
 from decimal import Decimal
 from datetime import date, timedelta
 from django import forms

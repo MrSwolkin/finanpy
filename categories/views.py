@@ -1,3 +1,9 @@
+"""
+Transaction category views for the Finanpy application.
+
+This module contains views for managing transaction categories including list,
+create, update, and delete views with protection for default categories.
+"""
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin

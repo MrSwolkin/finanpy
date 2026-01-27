@@ -1,3 +1,9 @@
+"""
+User authentication forms for the Finanpy application.
+
+This module contains forms for user registration with email-based authentication,
+custom validation, and TailwindCSS styling.
+"""
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError

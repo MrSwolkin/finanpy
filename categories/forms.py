@@ -1,3 +1,9 @@
+"""
+Transaction category forms for the Finanpy application.
+
+This module contains forms for creating and editing transaction categories with
+color picker, uniqueness validation, and protection for default categories.
+"""
 from django import forms
 from .models import Category
 

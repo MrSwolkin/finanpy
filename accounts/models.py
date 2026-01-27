@@ -1,3 +1,9 @@
+"""
+Bank account models for the Finanpy application.
+
+This module defines the Account model which represents different types of
+financial accounts (checking, savings, investment, etc.) with balance tracking.
+"""
 from django.conf import settings
 from django.db import models
 

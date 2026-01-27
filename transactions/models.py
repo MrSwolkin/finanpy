@@ -1,3 +1,9 @@
+"""
+Transaction models for the Finanpy application.
+
+This module defines the Transaction model which represents financial transactions
+(income and expenses) linked to accounts and categories.
+"""
 from django.conf import settings
 from django.db import models
 

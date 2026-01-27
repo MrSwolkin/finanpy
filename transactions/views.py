@@ -1,3 +1,10 @@
+"""
+Transaction views for the Finanpy application.
+
+This module contains views for managing financial transactions including list
+with advanced filtering, create, update, delete, and detail views with
+automatic balance calculations and query optimization.
+"""
 from datetime import date
 from decimal import Decimal
 

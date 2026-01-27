@@ -1,3 +1,9 @@
+"""
+User profile forms for the Finanpy application.
+
+This module contains forms for updating user profile information including
+name, phone, and avatar with file validation and TailwindCSS styling.
+"""
 from django import forms
 
 from .models import Profile

@@ -1,3 +1,9 @@
+"""
+Bank account views for the Finanpy application.
+
+This module contains views for managing bank accounts including list, create,
+update, delete, and detail views with user-specific filtering and balance calculations.
+"""
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin

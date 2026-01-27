@@ -1,3 +1,9 @@
+"""
+User authentication views for the Finanpy application.
+
+This module contains views for user registration, login, logout, and password
+reset functionality using email-based authentication.
+"""
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.views import (

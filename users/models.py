@@ -1,3 +1,9 @@
+"""
+User authentication models for the Finanpy application.
+
+This module defines a custom user model that uses email-based authentication
+instead of Django's default username-based authentication.
+"""
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 

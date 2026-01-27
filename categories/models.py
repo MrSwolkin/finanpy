@@ -1,3 +1,9 @@
+"""
+Transaction category models for the Finanpy application.
+
+This module defines the Category model which represents income and expense
+categories for organizing financial transactions.
+"""
 from django.conf import settings
 from django.db import models
 

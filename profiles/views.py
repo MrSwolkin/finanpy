@@ -1,3 +1,9 @@
+"""
+User profile views for the Finanpy application.
+
+This module contains views for displaying and updating user profile information
+such as name, phone number, and avatar image.
+"""
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin

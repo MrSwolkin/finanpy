@@ -1,3 +1,9 @@
+"""
+User profile models for the Finanpy application.
+
+This module defines the Profile model which stores extended user information
+such as name, phone number, and avatar image.
+"""
 from django.conf import settings
 from django.db import models
 

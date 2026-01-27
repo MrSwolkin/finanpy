@@ -1,3 +1,9 @@
+"""
+Bank account forms for the Finanpy application.
+
+This module contains forms for creating and editing bank accounts with
+custom validation, TailwindCSS styling, and support for negative balances.
+"""
 from decimal import Decimal
 from django import forms
 from .models import Account

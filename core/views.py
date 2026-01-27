@@ -1,3 +1,9 @@
+"""
+Core views for the Finanpy application.
+
+This module contains the main dashboard view that displays financial overview,
+balance information, recent transactions, and category summaries with period filtering.
+"""
 from datetime import date, timedelta
 from decimal import Decimal
 
